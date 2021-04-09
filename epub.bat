@@ -1,0 +1,1 @@
+pandoc -o FRTB.epub --webtex -s --metadata-file=FRTB.yml MAR22.md

@@ -96,10 +96,12 @@ and loss (P&L) already realised on the position, where:
 2. P&L is the cumulative mark-to-market loss (or gain) already taken on the exposure. P&L is equal to the market value
    minus the notional amount, where the market value is the current market value of the position.
 
-\begin{align} 
-   JTD_{long} &= \max(LGD \times notional + P\&L, 0)\\ 
+$$
+\begin{align*} 
+   JTD_{long}  &= \max(LGD \times notional + P\&L, 0)\\ 
    JTD_{short} &= \min(LGD \times notional + P\&L, 0)   
-\end{align}
+\end{align*}
+$$
 
 For calculating the gross JTD, LGD is set as follows:
 
@@ -158,10 +160,9 @@ position.
 
 To account for defaults within the one-year capital horizon, the JTD for all exposures of maturity less than one year
 and their hedges are scaled by a fraction of a year. No scaling is applied to the JTD for exposures of one year or
-greater.[1] For example, the JTD for a position with a six month maturity would be weighted by one-half, while the JTD
-for a position with a one year maturity would have no scaling applied to the JTD.
-
-TODO: Footnote 1
+greater.^[Note that this paragraph refers to the scaling of gross JTD (ie not net JTD)] For example, the JTD for a
+position with a six month maturity would be weighted by one-half, while the JTD for a position with a one year maturity
+would have no scaling applied to the JTD.
 
 Cash equity positions (ie stocks) are assigned to a maturity of either more than one year or three months, at banks’
 discretion.
@@ -194,9 +195,8 @@ Exposures to the same obligator may be offset as follows:
       horizon (equal to one year) must be weighted by the ratio of the exposure’s maturity relative to the capital
       horizon. For example, with the one-year capital horizon, a three-month short exposure would be weighted so that
       its benefit against long exposures of longer-than-one-year maturity would be reduced to one quarter of the
-      exposure size.[2]
-
-TODO: Footnote 2
+      exposure size.
+      ^[Basel Committee on Banking Supervision, Revisions to the securitisation framework, December 2014, 2016 and 2018]
 
 In the case of long and short offsetting exposures where both have a maturity under one year, the scaling can be applied
 to both the long and short exposures.
@@ -227,7 +227,8 @@ ratio is computed as follows.
    
 3. The HBR is the ratio of net long JTD risk positions to the sum of net long JTD and absolute value of net short JTD
    risk positions:
-   $$ HBR = \frac{x}{x+y} $$
+   
+   $$ HBR = \frac{ \sum{net JTD_{long}} }{\sum{net JTD_{long}} + \sum{|net JTD_{short}|}} $$
 
 For calculating the weighted net JTD, default risk weights are set depending on the credit quality categories (ie rating
 bands) for all three buckets (ie irrespective of the type of counterparty), as set out in Table 2:
@@ -445,13 +446,14 @@ is determined in a similar approach to that for non-securitisations.
    $$
 
 The total DRC requirement for securitisations (CTP) is calculated by aggregating bucket level capital amounts as
-follows. For instance, if the DRC requirement for the index CDX North America IG is $+100$ and the DRC requirement for the
-index Major Sovereign (G7 and Western Europe) is $-100$, the total DRC requirement for the CTP is $100-0.5 \times 100=50$.
+follows. For instance, if the DRC requirement for the index CDX North America IG is $+100$ and the DRC requirement for
+the index Major Sovereign (G7 and Western Europe) is $-100$, the total DRC requirement for the CTP is $100-0.5 \times
+100=50$.
+^[The procedure for the $DRC_b$ and $DRC_{ctp}$ terms accounts for the basis risk in cross index hedges, as the hedge 
+benefit from cross-index short positions is discounted twice, first by the hedge benefit ratio HBR in $DRC_b$,and again 
+by the term 0.5 in the $DRC_{ctp}$ equation]
 
 $$
    DRC_{ctp} = \max \left[ \sum_b{(\max[DRC_b, 0] + 0.5 \times \min[DRC_b, 0])}, 0 \right]
 $$
-
-TODO: FOOTNOTE
-
 
