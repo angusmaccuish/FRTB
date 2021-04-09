@@ -19,7 +19,9 @@ correlation risks).
 The DRC requirement must be calculated for instruments subject to default risk:
 
 1. Non-securitisation portfolios
+   
 2. Securitisation portfolio (non-correlation trading portfolio, or non-CTP)
+   
 3. Securitisation (correlation trading portfolio, or CTP)
 
 ## Overview of DRC requirement calculation {#MAR22.3}
@@ -29,18 +31,24 @@ definition of gross JTD risk, net JTD risk, bucket, risk weight and the method f
 buckets are separately set out per each risk class in subsections in [MAR22.9] to [MAR22.26].
 
 1. The gross JTD risk of each exposure is computed separately.
+   
 2. With respect to the same obligator, the JTD amounts of long and short exposures are offset (where permissible) to
    produce net long and/or net short exposure amounts per distinct obligor.
+   
 3. Net JTD risk positions are then allocated to buckets.
+   
 4. Within a bucket, a hedge benefit ratio is calculated using net long and short JTD risk positions. This acts as a
    discount factor that reduces the amount of net short positions to be netted against net long positions within a
    bucket. A prescribed risk weight is applied to the net positions which are then aggregated.
+   
 5. Bucket level DRC requirements are aggregated as a simple sum across buckets to give the overall DRC requirement.
 
 No diversification benefit is recognised between the DRC requirements for:
 
 1. non-securitisations;
+   
 2. securitisations (non-CTP); and
+   
 3. securitisations (CTP).
 
 For traded non-securitisation credit and equity derivatives, JTD risk positions by individual constituent issuer legal
@@ -74,6 +82,7 @@ For the purpose of DRC requirements, the determination of the long/short directi
 long or short with respect to whether the credit exposure results in a loss or gain in the case of a default.
 
 1. Specifically, a long exposure is defined as a credit exposure that results in a loss in the case of a default.
+   
 2. For derivative contracts, the long/short direction is also determined by whether the contract will result in a loss
    in the case of a default (ie long or short position is not determined by whether the option or credit default swap (
    CDS), is bought or sold). Thus, for the purpose of DRC requirements, a sold put option on a bond is a long credit
@@ -83,17 +92,23 @@ The gross JTD is a function of the loss given default (LGD), notional amount (or
 and loss (P&L) already realised on the position, where:
 
 1. notional is the bond-equivalent notional amount (or face value) of the position; and
+   
 2. P&L is the cumulative mark-to-market loss (or gain) already taken on the exposure. P&L is equal to the market value
    minus the notional amount, where the market value is the current market value of the position.
 
-\begin{align} JTD_{long} &= \max(LGD \times notional + P\&L, 0)\\ JTD_{short} &= \min(LGD \times notional + P\&L, 0)   
+\begin{align} 
+   JTD_{long} &= \max(LGD \times notional + P\&L, 0)\\ 
+   JTD_{short} &= \min(LGD \times notional + P\&L, 0)   
 \end{align}
 
 For calculating the gross JTD, LGD is set as follows:
 
 1. Equity instruments and non-senior debt instruments are assigned an LGD of 100%.
+   
 2. Senior debt instruments are assigned an LGD of 75%.
+   
 3. Covered bonds, as defined within [MAR21.51], are assigned an LGD of 25%.
+   
 4. When the price of the instrument is not linked to the recovery rate of the defaulter (eg a foreign exchange-credit
    hybrid option where the cash flows are swap of cash flows, long EUR coupons and short USD coupons with a knockout
    feature that ends cash flows on an event of default of a particular obligor), there should be no multiplication of
@@ -112,8 +127,10 @@ position.
    principal is determined. Examples are as follows:
 
     * For a bond, the notional amount is the face value.
+      
     * For credit derivatives, the notional amount of a CDS contract or a put option on a bond is the notional amount of
       the derivative contract.
+      
     * In the case of a call option on a bond, the notional amount to be used in the JTD calculation is zero (since, in
       the event of default, the call option will not be exercised). In this case, a JTD would extinguish the call
       option’s value and this loss would be captured through the mark-to-market P&L term in the JTD calculation.
@@ -122,7 +139,9 @@ position.
    mark-to-market loss to be used in the JTD calculation, where:
 
     * the bond-equivalent market value is an intermediate step in determining the P&L for derivative instruments;
+      
     * the mark-to-market value of CDS or an option takes an absolute value; and
+      
     * the strike amount of the bond option is expressed in terms of the bond price (not the yield).
 
 | Instrument         | Notional           | Bond-equivalent market value            | P&L                                |
@@ -162,12 +181,15 @@ Exposures to the same obligator may be offset as follows:
 1. The gross JTD risk positions of long and short exposures to the same obligor may be offset where the short exposure
    has the same or lower seniority relative to the long exposure. For example, a short exposure in an equity may offset
    a long exposure in a bond, but a short exposure in a bond cannot offset a long exposure in the equity.
+   
 2. For the purposes of determining whether a guaranteed bond is an exposure to the underlying obligor or an exposure to
    the guarantor, the credit risk mitigation requirements set out in paragraphs 189 and 190 of the Basel II framework
    apply.
+   
 3. Exposures of different maturities that meet this offsetting criterion may be offset as follows.
 
     * Exposures with maturities longer than the capital horizon (one year) may be fully offset.
+      
     * An exposure to an obligor comprising a mix of long and short exposures with a maturity less than the capital
       horizon (equal to one year) must be weighted by the ratio of the exposure’s maturity relative to the capital
       horizon. For example, with the one-year capital horizon, a three-month short exposure would be weighted so that
@@ -187,7 +209,9 @@ short JTD risk positions are aggregated separately as described below.
 For the default risk of non-securitisations, three buckets are defined as:
 
 1. corporates;
+   
 2. sovereigns; and
+   
 3. local governments and municipalities.
 
 In order to recognise hedging relationship between net long and net short positions within a bucket, a hedge benefit
@@ -196,9 +220,11 @@ ratio is computed as follows.
 1. A simple sum of the net long JTD risk positions (not risk-weighted) must be calculated, where the summation is across
    the credit quality categories (ie rating bands). The aggregated amount is used in the numerator and denominator of
    the expression of the hedge benefit ratio (HBR) below.
+   
 2. A simple sum of the net (not risk-weighted) short JTD risk positions must be calculated, where the summation is
    across the credit quality categories (ie rating bands). The aggregated amount is used in the denominator of the
    expression of the HBR below.
+   
 3. The HBR is the ratio of net long JTD risk positions to the sum of net long JTD and absolute value of net short JTD
    risk positions:
    $$ HBR = \frac{x}{x+y} $$
@@ -225,7 +251,9 @@ JTD, the HBR, and the sum of the risk-weighted short net JTD, where the summatio
 JTD is across the credit quality categories (ie rating bands). In the following formula, DRC stands for DRC requirement;
 and i refers to an instrument belonging to bucket b.
 
-TODO: FORMULA
+$$
+   DRC_b = \max \left[ \left( \sum_i{RW_i \times net JTD_i} \right) - HBR \times \left( \sum{RW_i \times |net JTD_i|} \right); 0 \right]
+$$
 
 No hedging is recognised between different buckets - the total DRC requirement for non-securitisations must be
 calculated as a simple sum of the bucket level capital requirements.
@@ -252,6 +280,7 @@ with the same underlying asset pool). This means that:
 
 1. no offsetting is permitted between securitisation exposures with different underlying securitised portfolio (ie
    underlying asset pools), even if the attachment and detachment points are the same; and
+   
 2. no offsetting is permitted between securitisation exposures arising from different tranches with the same securitised
    portfolio.
 
@@ -263,9 +292,11 @@ allowed as follows.
 1. Securitisation exposures that can be perfectly replicated through decomposition may be offset. Specifically, if a
    collection of long securitisation exposures can be replicated by a collection of short securitisation exposures, then
    the securitisation exposures may be offset.
+   
 2. Furthermore, when a long securitisation exposure can be replicated by a collection of short securitisation exposures
    with different securitised portfolios, then the securitisation exposure with the “mixed” securitisation portfolio may
    be offset by the combination of replicating securitisation exposures.
+   
 3. After the decomposition, the offsetting rules would apply as in any other case. As in the case of default risk (
    non-securitisations), long and short securitisation exposures should be determined from the perspective of long or
    short the underlying credit, eg the bank making losses on a long securitisation exposure in the event of a default in
@@ -276,6 +307,7 @@ allowed as follows.
 For default risk of securitisations (non-CTP), the buckets are defined as follows:
 
 1. Corporates (excluding small and medium enterprises) – this bucket takes into account all regions.
+   
 2. Other buckets – these are defined along two dimensions:
    
    * Asset classes: the 11 asset classes are defined as asset-backed commercial paper; auto Loans/Leases; residential
@@ -288,6 +320,7 @@ for grouping securitisation exposures by type and region of underlying.
 
 1. The bank must assign each securitisation exposure to one and only one of the buckets above and it must assign all
    securitisations with the same type and region of underlying to the same bucket.
+   
 2. Any securitisation exposure that a bank cannot assign to a type or region of underlying in this fashion must be
    assigned to the “other bucket”.
 
@@ -296,6 +329,7 @@ non-securitisations. The DRC requirement within a bucket is calculated as follow
 
 1. The hedge benefit discount HBR, as defined in [MAR22.23], is applied to net short securitisation exposures in that
    bucket.
+   
 2. The capital requirement is calculated as in [MAR22.25].
 
 For calculating the weighted net JTD, the risk weights of securitisation exposures are defined by the tranche instead of
@@ -308,8 +342,10 @@ the credit quality. The risk weight for securitisations (non-CTP) is applied as 
    the following modification: the maturity component in the banking book securitisation framework is set to zero (ie a
    one-year maturity is assumed) to avoid double-counting of risks in the maturity adjustment (of the banking book
    approach) since migration risk in the trading book will be captured in the credit spread capital requirement.
+   
 2. Following the corresponding treatment in the banking book, the hierarchy of approaches in determining the risk
    weights should be applied at the underlying pool level.
+   
 3. The capital requirement under the standardised approach for an individual cash securitisation position can be capped
    at the fair value of the transaction.
 
@@ -330,6 +366,7 @@ Nth-to-default products should be treated as tranched products with attachment a
 where “Total names” is the total number of names in the underlying basket or pool:
 
 1. Attachment point = (N – 1) / Total names
+   
 2. Detachment point = N / Total names
 
 ### Net jump-to-default risk positions (net JTD)
@@ -342,6 +379,7 @@ to JTD risk positions for securitisations (non-CTP).
 1. For index products, for the exact same index family (eg CDX.NA.IG), series (eg series 18) and tranche (eg 0–3%),
    securitisation exposures should be offset (netted) across maturities (subject to the offsetting allowance as
    described above).
+   
 2. Long and short exposures that are perfect replications through decomposition may be offset as follows. When the
    offsetting involves decomposing single name equivalent exposures, decomposition using a valuation model would be
    allowed in certain cases as follows. Such decomposition is the sensitivity of the security’s value to the default of
@@ -353,6 +391,7 @@ to JTD risk positions for securitisations (non-CTP).
    where in particular the sum of the decomposed single name amounts must be consistent with the undecomposed value of
    the securitisation. Further, such decomposition is restricted to vanilla securitisations (eg vanilla CDOs, index
    tranches or bespokes); while the decomposition of exotic securitisations (eg CDO squared) is prohibited.
+   
 3. Moreover, for long and short positions in index tranches, and indices (non-tranched), if the exposures are to the
    exact same series of the index, then offsetting is allowed by replication and decomposition. For instance, a long
    securitisation exposure in a 10–15% tranche vs combined short securitisation exposures in 10–12% and 12–15% tranches
@@ -367,6 +406,7 @@ to JTD risk positions for securitisations (non-CTP).
    instance, a long securitisation exposure in an index of 125 names, and short securitisation exposures of the
    appropriate replicating amounts in 124 of the names, would result in a net long securitisation exposure in the
    missing 125th name of the index.
+   
 4. Different tranches of the same index or series may not be offset (netted), different series of the same index may not
    be offset, and different index families may not be offset.
 
@@ -397,10 +437,11 @@ is determined in a similar approach to that for non-securitisations.
    using the combined long and short positions across all indices in the CTP (ie not only the long and short positions
    of the bucket by itself). The summation of risk-weighted amounts in the formula spans all exposures relating to the
    index (ie index tranche, bespoke, non-tranche index or single name).
+   
 2. A deviation from the approach for non-securitisations is that no floor at zero applies at the bucket level, and
    consequently, the DRC requirement at the index level $DRC_b$ can be negative.
    $$
-      DRC_b = (\sum{RW_i \times net JTD_i}) - HBR_{ctp} \times (\sum{RW_i \times |net JTD_i|})
+      DRC_b = \left( \sum{RW_i \times net JTD_i} \right) - HBR_{ctp} \times \left( \sum{RW_i \times |net JTD_i|} \right)
    $$
 
 The total DRC requirement for securitisations (CTP) is calculated by aggregating bucket level capital amounts as
@@ -408,7 +449,7 @@ follows. For instance, if the DRC requirement for the index CDX North America IG
 index Major Sovereign (G7 and Western Europe) is $-100$, the total DRC requirement for the CTP is $100-0.5 \times 100=50$.
 
 $$
-   DRC_{ctp} = \max[\sum_b{\max(DRC_b, 0) + 0.5 \times \min(DRC_b, 0)}, 0]
+   DRC_{ctp} = \max \left[ \sum_b{(\max[DRC_b, 0] + 0.5 \times \min[DRC_b, 0])}, 0 \right]
 $$
 
 TODO: FOOTNOTE
