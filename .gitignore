@@ -1,4 +1,6 @@
 *.html
 *.xhtml
 *.pdf
+*.epub
+*.mobi
 /.idea/

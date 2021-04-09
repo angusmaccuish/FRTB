@@ -97,10 +97,10 @@ and loss (P&L) already realised on the position, where:
    minus the notional amount, where the market value is the current market value of the position.
 
 $$
-\begin{align*} 
+\begin{aligned}[t] 
    JTD_{long}  &= \max(LGD \times notional + P\&L, 0)\\ 
    JTD_{short} &= \min(LGD \times notional + P\&L, 0)   
-\end{align*}
+\end{aligned}
 $$
 
 For calculating the gross JTD, LGD is set as follows:
