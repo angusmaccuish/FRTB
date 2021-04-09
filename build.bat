@@ -1,0 +1,1 @@
+pandoc -o FRTB.pdf -s --metadata-file=FRTB.yml MAR22.md
