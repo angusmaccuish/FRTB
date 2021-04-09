@@ -397,14 +397,18 @@ is determined in a similar approach to that for non-securitisations.
    index (ie index tranche, bespoke, non-tranche index or single name).
 2. A deviation from the approach for non-securitisations is that no floor at zero applies at the bucket level, and
    consequently, the DRC requirement at the index level $DRC_b$ can be negative.
-   
-TODO: FORMULA
+   $$
+      DRC_b = (\sum{RW_i \times net JTD_i}) - HBR_{ctp} \times (\sum{RW_i \times |net JTD_i|})
+   $$
 
 The total DRC requirement for securitisations (CTP) is calculated by aggregating bucket level capital amounts as
 follows. For instance, if the DRC requirement for the index CDX North America IG is $+100$ and the DRC requirement for the
 index Major Sovereign (G7 and Western Europe) is $-100$, the total DRC requirement for the CTP is $100-0.5 \times 100=50$.
 
-TODO: FORMULA
+$$
+   DRC_{ctp} = \max[\sum_b{\max(DRC_b, 0) + 0.5 \times \min(DRC_b, 0)}, 0]
+$$
+
 TODO: FOOTNOTE
 
 
