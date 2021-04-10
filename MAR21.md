@@ -203,7 +203,867 @@ above that already captured by the delta risk capital requirement using the foll
    
      $$
      \begin{aligned}[t]
-         K_b^+ &= ...\\
-         K_b^- &= ...
+         K_b^+ &= \sqrt{ \max \left( 0, \sum_k { \max(\mathit{CVR}_k^+, 0)^2 } + \sum_{l \ne k} \sum_k { \rho_{kl} \mathit{CVR}_k^+ \mathit{CVR}_l^+ \psi(\mathit{CVR}_k^+, \mathit{CVR}_l^+)} \right) }\\
+         K_b^+ &= \sqrt{ \max \left( 0, \sum_k { \max(\mathit{CVR}_k^-, 0)^2 } + \sum_{l \ne k} \sum_k { \rho_{kl} \mathit{CVR}_k^- \mathit{CVR}_l^- \psi(\mathit{CVR}_k^-, \mathit{CVR}_l^-)} \right) }
      \end{aligned}
      $$
+
+4. Across bucket aggregation: curvature risk positions must then be aggregated across buckets within each risk class,
+   using the corresponding prescribed correlations $\gamma_{bc}$, where:
+
+    * $S_b = \sum_k{ \mathit{CVR}_k^+ }$ for all risk factors in bucket b, when the upward scenario has been selected
+      for bucket b in above (3)(a). $S_b = \sum_k{ \mathit{CVR}_k^- }$ otherwise; and
+
+    * $\psi(S_b, S_c)$ takes the value 0 if $S_b $and $S_c$ both have negative signs and 1 otherwise.
+
+   $$ \mathit{Curvature risk} = \sqrt{ \max \left( 0, \sum_b {K_b^2} + \sum_{c \ne b} \sum_b {\gamma_{bc} S_b S_c \psi(S_b, S_c)} \right)} $$
+
+## Calculation of aggregate sensitivities-based method capital requirement
+
+In order to address the risk that correlations increase or decrease in periods of financial stress, the aggregation of
+bucket level capital requirements and risk class level capital requirements per each risk class for delta, vega, and
+curvature risks as specified in [MAR21.4] to [MAR21.5] must be repeated, corresponding to three different scenarios on
+the specified values for the correlation parameter $\rho_{kl}$ (correlation between risk factors within a bucket) and
+$\gamma_{bc}$ (correlation across buckets within a risk class).
+
+1. Under the "medium correlations" scenario, the correlation parameters $\rho_{kl}$ and $\gamma_{bc}$ as specified
+   in [MAR21.39] to [MAR21.101] apply.
+
+2. Under the "high correlations" scenario, the correlation parameters $\rho_{kl}$ and $\gamma_{bc}$ that are specified
+   in [MAR21.39] to [MAR21.101] are uniformly multiplied by 1.25, with $\rho_{kl}$ and $\gamma_{bc}$ subject to a cap at
+   100\%.
+
+3. Under the "low correlations" scenario, the correlation parameters $\rho_{kl}$ and $\gamma_{bc}$ that are specified in
+   MAR21.39 to MAR21.101] are replaced by $\rho_{kl}^{low} = \max(2 \times \rho_{kl} - 100\%; 75\% \times \rho_{kl})$ and
+   $\gamma_{bc}^{low} = \max(2 \times \gamma_{bc} - 100\%; 75\% \times \gamma_{bc})$.
+
+The total capital requirement under the sensitivities-based method is aggregated as follows:
+
+1. For each of three correlation scenarios, the bank must simply sum up the separately calculated delta, vega and
+   curvature capital requirements for all risk classes to determine the overall capital requirement for that scenario.
+
+2. The sensitivities-based method capital requirement is the largest capital requirement from the three scenarios.
+
+    * For the calculation of capital requirements for all instruments in all trading desks using the standardised
+      approach as set out in [MAR11.8](1) and [MAR20.2] and [MAR33.40], the capital requirement is calculated for all
+      instruments in all trading desks.
+
+    * For the calculation of capital requirements for each trading desk using the standardised approach as if that desk
+      were a standalone regulatory portfolio as set out in [MAR11.8](2), the capital requirements under each correlation
+      scenario are calculated and compared at each trading desk level, and the maximum for each trading desk is taken as
+      the capital requirement.
+
+## Sensitivities-based method: risk factor and sensitivity definitions
+
+## Risk factor definitions for delta, vega and curvature risks
+
+GIRR factors
+
+1. Delta GIRR: the GIRR delta risk factors are defined along two dimensions: (i) a risk-free yield curve for each
+   currency in which interest rate-sensitive instruments are denominated and (ii) the following tenors: 0.25 years, 0.5
+   years, 1 year, 2 years, 3 years, 5 years, 10 years, 15 years, 20 years and 30 years, to which delta risk factors are
+   assigned.
+   ^[The assignment of risk factors to the specified tenors should be performed by linear interpolation or a method that is most consistent with the pricing functions used by the independent risk control function of a bank to report market risks or P&L to senior management.]
+
+    * The risk-free yield curve per currency should be constructed using money market instruments held in the trading
+      book that have the lowest credit risk, such as overnight index swaps (OIS). Alternatively, the risk-free yield
+      curve should be based on one or more market-implied swap curves used by the bank to mark positions to market. For
+      example, interbank offered rate (BOR) swap curves.
+
+   * When data on market-implied swap curves described in above (1)(a) are insufficient, the risk-free yield curve may
+     be derived from the most appropriate sovereign bond curve for a given currency. In such cases the sensitivities
+     related to sovereign bonds are not exempt from the CSR capital requirement: when a bank cannot perform the
+     decomposition $y=r+cs$, any sensitivity to y is allocated both to the GIRR and to CSR classes as appropriate with the
+     risk factor and sensitivity definitions in the standardised approach. Applying swap curves to bond-derived
+     sensitivities for GIRR will not change the requirement for basis risk to be captured between bond and credit
+     default swap (CDS) curves in the CSR class.
+
+   * For the purpose of constructing the risk-free yield curve per currency, an OIS curve (such as Eonia or a new
+     benchmark rate) and a BOR swap curve (such as three-month Euribor or other benchmark rates) must be considered two
+     different curves. Two BOR curves at different maturities (eg three-month Euribor and six-month Euribor) must be
+     considered two different curves. An onshore and an offshore currency curve (eg onshore Indian rupee and offshore
+     Indian rupee) must be considered two different curves.
+
+2. The GIRR delta risk factors also include a flat curve of market-implied inflation rates for each currency with term
+   structure not recognised as a risk factor.
+
+    * The sensitivity to the inflation rate from the exposure to implied coupons in an inflation instrument gives rise
+      to a specific capital requirement. All inflation risks for a currency must be aggregated to one number via simple
+      sum.
+
+    * This risk factor is only relevant for an instrument when a cash flow is functionally dependent on a measure of
+      inflation (eg the notional amount or an interest payment depending on a consumer price index). GIRR risk factors
+      other than for inflation risk will apply to such an instrument notwithstanding.
+
+    * Inflation rate risk is considered in addition to the sensitivity to interest rates from the same instrument, which
+      must be allocated, according to the GIRR framework, in the term structure of the relevant risk-free yield curve in
+      the same currency.
+
+3. The GIRR delta risk factors also include one of two possible cross-currency basis risk factors
+   ^[Cross-currency basis are basis added to a yield curve in order to evaluate a swap for which the two legs are paid in two different currencies. They are in particular used by market participants to price cross-currency interest rate swaps paying a fixed or a floating leg in one currency, receiving a fixed or a floating leg in a second currency, and including an exchange of the notional in the two currencies at the start date and at the end date of the swap.]
+   for each currency (ie each GIRR bucket) with the term structure not recognised as a risk factor (ie both
+   cross-currency basis curves are flat).
+
+    * The two cross-currency basis risk factors are basis of each currency over USD or basis of each currency over EUR.
+      For instance, an AUD-denominated bank trading a JPY/USD cross-currency basis swap would have a sensitivity to the
+      JPY/USD basis but not to the JPY/EUR basis.
+
+    * Cross-currency bases that do not relate to either basis over USD or basis over EUR must be computed either on
+      "basis over USD" or "basis over EUR" but not both. GIRR risk factors other than for cross-currency basis risk will
+      apply to such an instrument notwithstanding.
+
+    * Cross-currency basis risk is considered in addition to the sensitivity to interest rates from the same instrument,
+      which must be allocated, according to the GIRR framework, in the term structure of the relevant risk-free yield
+      curve in the same currency.
+
+4. Vega GIRR: within each currency, the GIRR vega risk factors are the implied volatilities of options that reference
+   GIRR-sensitive underlyings; as defined along two dimensions:
+   ^[For example, an option with a forward starting cap, lasting 12 months, consists of four consecutive caplets on USD three-month Libor. There are four (independent) options, with option expiry dates in 12, 15, 18 and 21 months. These options are all on underlying USD three-month Libor; the underlying always matures three months after the option expiry date (its residual maturity being three months). Therefore, the implied volatilities for a regular forward starting cap, which would start in one year and last for 12 months should be defined along the following two dimensions: (i) the maturity of the option’s individual components (caplets) - 12, 15, 18 and 21 months; and (ii) the residual maturity of the underlying of the option – three months.]
+
+    * The maturity of the option: the implied volatility of the option as mapped to one or several of the following
+      maturity tenors: 0.5 years, 1 year, 3 years, 5 years and 10 years.
+
+    * The residual maturity of the underlying of the option at the expiry date of the option: the implied volatility of
+      the option as mapped to two (or one) of the following residual maturity tenors: 0.5 years, 1 year, 3 years, 5
+      years and 10 years.
+
+5. Curvature GIRR:
+
+    * The GIRR curvature risk factors are defined along only one dimension: the constructed risk-free yield curve per
+      currency with no term structure decomposition. For example, the euro, Eonia, three-month Euribor and six-month
+      Euribor curves must be shifted at the same time in order to compute the euro-relevant risk-free yield curve
+      curvature risk capital requirement. For the calculation of sensitivities, all tenors (as defined for delta GIRR)
+      are to be shifted in parallel.
+
+    * There is no curvature risk capital requirement for inflation and cross-currency basis risks.
+
+6. The treatment described in above (1)(b) for delta GIRR also applies to vega GIRR and curvature GIRR risk factors.
+
+CSR non-securitisation risk factors
+
+1. Delta CSR non-securitisation: the CSR non-securitisation delta risk factors are defined along two dimensions:
+
+    * the relevant issuer credit spread curves (bond and CDS); and
+    * the following tenors: 0.5 years, 1 year, 3 years, 5 years and 10 years.
+
+2. Vega CSR non-securitisation: the vega risk factors are the implied volatilities of options that reference the
+   relevant credit issuer names as underlyings (bond and CDS); further defined along one dimension - the maturity of the
+   option. This is defined as the implied volatility of the option as mapped to one or several of the following maturity
+   tenors: 0.5 years, 1 year, 3 years, 5 years and 10 years.
+
+3. Curvature CSR non-securitisation: the CSR non-securitisation curvature risk factors are defined along one dimension:
+   the relevant issuer credit spread curves (bond and CDS). For instance, the bond-inferred spread curve of an issuer
+   and the CDS-inferred spread curve of that same issuer should be considered a single spread curve. For the calculation
+   of sensitivities, all tenors (as defined for CSR) are to be shifted in parallel.
+
+CSR securitisation: non-CTP risk factors
+
+1. For securitisation instruments that do not meet the definition of CTP as set out in [MAR20.5] (ie, non-CTP), the
+   sensitivities of delta risk factors (ie CS01) must be calculated with respect to the spread of the tranche rather
+   than the spread of the underlying of the instruments.
+
+2. Delta CSR securitisation (non-CTP): the CSR securitisation delta risk factors are defined along two dimensions:
+
+    * Tranche credit spread curves; and
+    * The following tenors: 0.5 years, 1 year, 3 years, 5 years and 10 years to which delta risk factors are assigned.
+
+3. Vega CSR securitisation (non-CTP): Vega risk factors are the implied volatilities of options that reference non-CTP
+   credit spreads as underlyings (bond and CDS); further defined along one dimension - the maturity of the option. This
+   is defined as the implied volatility of the option as mapped to one or several of the following maturity tenors: 0.5
+   years, 1 year, 3 years, 5 years and 10 years.
+
+4. Curvature CSR securitisation (non-CTP): the CSR securitisation curvature risk factors are defined along one
+   dimension, the relevant tranche credit spread curves (bond and CDS). For instance, the bond-inferred spread curve of
+   a given Spanish residential mortgage-backed security (RMBS) tranche and the CDS-inferred spread curve of that given
+   Spanish RMBS tranche would be considered a single spread curve. For the calculation of sensitivities, all the tenors
+   are to be shifted in parallel.
+
+CSR securitisation: CTP risk factors
+
+1. For securitisation instruments that meet the definition of a CTP as set out in [MAR20.5], the sensitivities of delta
+   risk factors (ie CS01) must be computed with respect to the names underlying the securitisation or nth-to-default
+   instrument.
+
+2. Delta CSR securitisation (CTP): the CSR correlation trading delta risk factors are defined along two dimensions:
+
+    * the relevant underlying credit spread curves (bond and CDS); and
+    * the following tenors: 0.5 years, 1 year, 3 years, 5 years and 10 years, to which delta risk factors are assigned.
+
+3. Vega CSR securitisation (CTP): the vega risk factors are the implied volatilities of options that reference CTP
+   credit spreads as underlyings (bond and CDS), as defined along one dimension, the maturity of the option. This is
+   defined as the implied volatility of the option as mapped to one or several of the following maturity tenors: 0.5
+   years, 1 year, 3 years, 5 years and 10 years.
+
+4. Curvature CSR securitisation (CTP): the CSR correlation trading curvature risk factors are defined along one
+   dimension, the relevant underlying credit spread curves (bond and CDS). For instance, the bond-inferred spread curve
+   of a given name within an iTraxx series and the CDS-inferred spread curve of that given underlying would be
+   considered a single spread curve. For the calculation of sensitivities, all the tenors are to be shifted in parallel.
+
+Equity risk factors
+
+1. Delta equity: the equity delta risk factors are:
+
+    * all the equity spot prices; and
+    * all the equity repurchase agreement rates (equity repo rates).
+
+2. Vega equity:
+
+    * The equity vega risk factors are the implied volatilities of options that reference the equity spot prices as
+      underlyings as defined along one dimension, the maturity of the option. This is defined as the implied volatility
+      of the option as mapped to one or several of the following maturity tenors: 0.5 years, 1 year, 3 years, 5 years
+      and 10 years.
+
+    * There is no vega risk capital requirement for equity repo rates.
+
+3. Curvature equity:
+
+    * The equity curvature risk factors are all the equity spot prices.
+    * There is no curvature risk capital requirement for equity repo rates.
+
+Commodity risk factors
+
+1. Delta commodity: the commodity delta risk factors are all the commodity spot prices. However for some commodities
+   such as electricity (which is defined to fall within bucket 3 (energy – electricity and carbon trading) in [MAR21.82]
+   the relevant risk factor can either be the spot or the forward price, as transactions relating to commodities such as
+   electricity are more frequent on the forward price than transactions on the spot price. Commodity delta risk factors
+   are defined along two dimensions:
+
+    * legal terms with respect to the delivery location
+      ^[For example, a contract that can be delivered in five ports can be considered having the same delivery location as another contract if and only if it can be delivered in the same five ports. However, it cannot be considered having the same delivery location as another contract that can be delivered in only four (or less) of those five ports.]
+      of the commodity; and
+
+    * time to maturity of the traded instrument at the following tenors: 0 years, 0.25 years, 0.5 years, 1 year, 2
+      years, 3 years, 5 years, 10 years, 15 years, 20 years and 30 years.
+
+2. Vega commodity: the commodity vega risk factors are the implied volatilities of options that reference commodity spot
+   prices as underlyings. No differentiation between commodity spot prices by the maturity of the underlying or delivery
+   location is required. The commodity vega risk factors are further defined along one dimension, the maturity of the
+   option. This is defined as the implied volatility of the option as mapped to one or several of the following maturity
+   tenors: 0.5 years, 1 year, 3 years, 5 years and 10 years.
+
+3. Curvature commodity: the commodity curvature risk factors are defined along only one dimension, the constructed
+   curve (ie no term structure decomposition) per commodity spot prices. For the calculation of sensitivities, all
+   tenors (as defined for delta commodity) are to be shifted in parallel.
+
+FX risk factors
+
+1. Delta FX: the FX delta risk factors are defined below.
+
+    * The FX delta risk factors are all the exchange rates between the currency in which an instrument is denominated
+      and the reporting currency. For transactions that reference an exchange rate between a pair of non-reporting
+      currencies, the FX delta risk factors are all the exchange rates between:
+
+        * the reporting currency; and
+
+        * both the currency in which an instrument is denominated and any other currencies referenced by the instrument.
+          ^[For example, for an FX forward referencing USD/JPY, the relevant risk factors for a CAD-reporting bank to consider are the exchange rates USD/CAD and JPY/CAD. If that CAD-reporting bank calculates FX risk relative to a USD base currency, it would consider separate deltas for the exchange rate JPY/USD risk and CAD/USD FX translation risk and then translate the resulting capital requirement to CAD at the USD/CAD spot exchange rate.]
+
+   * Subject to supervisory approval, FX risk may alternatively be calculated relative to a base currency instead of the
+     reporting currency. In such case the bank must account for not only:
+
+       * the FX risk against the base currency; but also
+       * the FX risk between the reporting currency and the base currency (ie translation risk).
+
+   * The resulting FX risk calculated relative to the base currency as set out in (b) is converted to the capital
+     requirements in the reporting currency using the spot reporting/base exchange rate reflecting the FX risk between
+     the base currency and the reporting currency.
+
+   * The FX base currency approach may be allowed under the following conditions:
+     
+       * To use this alternative, a bank may only consider a single currency as its base currency; and
+         
+       * The bank shall demonstrate to the relevant supervisor that calculating FX risk relative to their proposed base
+         currency provides an appropriate risk representation for their portfolio (for example, by demonstrating that it
+         does not inappropriately reduce capital requirements relative to those that would be calculated without the
+         base currency approach) and that the translation risk between the base currency and the reporting currency is
+         taken into account.
+
+2. Vega FX: the FX vega risk factors are the implied volatilities of options that reference exchange rates between
+   currency pairs; as defined along one dimension, the maturity of the option. This is defined as the implied volatility
+   of the option as mapped to one or several of the following maturity tenors: 0.5 years, 1 year, 3 years, 5 years and
+   10 years.
+
+3. Curvature FX: the FX curvature risk factors are defined below.
+
+    * The FX curvature risk factors are all the exchange rates between the currency in which an instrument is
+      denominated and the reporting currency. For transactions that reference an exchange rate between a pair of
+      non-reporting currencies, the FX risk factors are all the exchange rates between:
+
+        * the reporting currency; and
+        * both the currency in which an instrument is denominated and any other currencies referenced by the instrument.
+
+   * Where supervisory approval for the base currency approach has been granted for delta risks, FX curvature risks
+     shall also be calculated relative to a base currency instead of the reporting currency, and then converted to the
+     capital requirements in the reporting currency using the spot reporting/base exchange rate.
+
+4. No distinction is required between onshore and offshore variants of a currency for all FX delta, vega and curvature
+   risk factors.
+
+## Sensitivities-based method: definition of sensitivities
+
+Sensitivities for each risk class must be expressed in the reporting currency of the bank
+
+For each risk factor defined in [MAR21.8] to [MAR21.14], sensitivities are calculated as the change in the market value
+of the instrument as a result of applying a specified shift to each risk factor, assuming all the other relevant risk
+factors are held at the current level as defined in [MAR21.17] to [MAR21.38].
+
+## Requirements on instrument price or pricing models for sensitivity calculation
+
+In calculating the risk capital requirement under the sensitivities-based method in [MAR21], the bank must determine
+each delta and vega sensitivity and curvature scenario based on instrument prices or pricing models that an independent
+risk control unit within a bank uses to report market risks or actual profits and losses to senior management.
+
+A key assumption of the standardised approach for market risk is that a bank's pricing models used in actual profit and
+loss reporting provide an appropriate basis for the determination of regulatory capital requirements for all market
+risks. To ensure such adequacy, banks must at a minimum establish a framework for prudent valuation practices that
+include the requirements of paragraph 718(c) to 718(cxii) of Basel II.
+
+## Sensitivity definitions for delta risk
+
+Delta GIRR: the sensitivity is defined as the PV01. PV01 is measured by changing the interest rate r at tenor t ($r_t$)
+of the risk-free yield curve in a given currency by 1 basis point (ie 0.0001 in absolute terms) and dividing the
+resulting change in the market value of the instrument ($V_i$) by 0.0001 (ie 0.01\%) as follows, where:
+
+1. $r_t$ is the risk-free yield curve at tenor $t$;
+   
+2. $\mathit{cs}_t$ is the credit spread curve at tenor $t$; and
+   
+3. $V_i$ is the market value of the instrument $i$ as a function of the risk-free interest rate curve and credit spread
+   curve:
+
+$$ s_{k, r_t} = \frac{V_i(r_t + 0.0001, \mathit{cs}_t) - V_i(r_t, \mathit{cs}_t)}{0.0001} $$
+
+Delta CSR non-securitisation, securitisation (non-CTP) and securitisation (CTP): the sensitivity is defined as CS01. The
+CS01 (sensitivity) of an instrument i is measured by changing a credit spread cs at tenor t ($\mathit{cs}_t$) by 1 basis
+point (ie 0.0001 in absolute terms) and dividing the resulting change in the market value of the instrument ($V_i$) by
+0.0001 (ie 0.01\%) as follows:
+
+$$ s_{k, r_t} = \frac{V_i(r_t, \mathit{cs}_t + 0.0001) - V_i(r_t, \mathit{cs}_t)}{0.0001} $$
+
+Delta equity spot: the sensitivity is measured by changing the equity spot price by 1 percentage point (ie 0.01 in
+relative terms) and dividing the resulting change in the market value of the instrument ($V_i$) by 0.01 (ie 1\%) as
+follows, where:
+
+1. $k$ is a given equity;
+
+2. $\mathit{EQ}_k$ is the market value of equity $k$; and
+
+3. $V_i$ is the market value of instrument $i$ as a function of the price of equity $k$.
+
+$$ s_k = \frac{V_i(1.01 \mathit{EQ}_k) - V_i(\mathit{EQ}_k)}{0.01} $$
+
+Delta equity repo rates: the sensitivity is measured by applying a parallel shift to the equity repo rate term structure
+by 1 basis point (ie 0.0001 in absolute terms) and dividing the resulting change in the market value of the instrument
+$V_i$ by 0.0001 (ie 0.01\%) as follows, where:
+
+1. $k$ is a given equity;
+2. $\mathit{RTS}_k$ is the repo term structure of equity $k$; and
+3. $V_i$ is the market value of instrument $i$ as a function of the repo term structure of equity $k$.
+
+$$ s_k = \frac{V_i(\mathit{RTS}_k + 0.0001) - V_i(\mathit{RTS}_k)}{0.0001} $$
+
+Delta commodity: the sensitivity is measured by changing the commodity spot price by 1 percentage point (ie 0.01 in
+relative terms) and dividing the resulting change in the market value of the instrument $V_i$ by 0.01 (ie 1\%) as
+follows, where:
+
+1. $k$ is a given commodity;
+2. $\mathit{CTY}_k$ is the market value of commodity $k$; and
+3. $V_i$ is the market value of instrument $i$ as a function of the spot price of commodity $k$:
+
+$$ s_k = \frac{V_i(1.01 \mathit{CTY}_k) - V_i(\mathit{CTY}_k)}{0.01} $$
+
+Delta FX: the sensitivity is measured by changing the exchange rate by 1 percentage point (ie 0.01 in relative terms)
+and dividing the resulting change in the market value of the instrument $V_i$ by 0.01 (ie 1\%), where:
+
+1. $k$ is a given currency;
+
+2. $\mathit{FX}_k$ is the exchange rate between a given currency and a bank's reporting currency or base currency, where
+   the FX spot rate is the current market price of one unit of another currency expressed in the units of the bank's
+   reporting currency or base currency; and
+   
+3. $V_i$ is the market value of instrument $i$ as a function of the exchange rate $k$:
+
+$$ s_k = \frac{V_i(1.01 \mathit{FX}_k) - V_i(\mathit{FX}_k)}{0.01} $$
+
+## Sensitivity definitions for vega risk
+
+The option-level vega risk sensitivity to a given risk factor
+^[As specified in the vega risk factor definitions in \[MAR21.8\] to \[MAR21.14\], the implied volatility of the option must be mapped to one or more maturity tenors.]
+is measured by multiplying vega by the implied volatility of the option as follows, where:
+
+1. vega, $\frac{\partial V_i}{\partial \sigma_i}$, is defined as the change in the market value of the option $V_i$ as a
+   result of a small amount of change to the implied volatility $\sigma_i$; and
+
+2. the instrument’s vega and implied volatility used in the calculation of vega sensitivities must be sourced from
+   pricing models used by the independent risk control unit of the bank.
+
+$$ s_k = \mathit{vega} \times \mathit{implied volatility}) $$
+
+The following sets out how to derive vega risk sensitivities in specific cases:
+
+1. Options that do not have a maturity, are assigned to the longest prescribed maturity tenor, and these options are
+   also assigned to the RRAO.
+
+2. Options that do not have a strike or barrier and options that have multiple strikes or barriers, are mapped to
+   strikes and maturity used internally to price the option, and these options are also assigned to the RRAO.
+
+3. CTP securitisation tranches that do not have an implied volatility, are not subject to vega risk capital requirement.
+   Such instruments may not, however, be exempt from delta and curvature risk capital requirements.
+   
+## Requirements on sensitivity computations
+
+When computing a first-order sensitivity for instruments subject to optionality, banks should assume that the implied volatility either:
+
+1. remains constant, consistent with a "sticky strike" approach; or
+
+2. follows a "sticky delta" approach, such that implied volatility does not vary with respect to a given level of delta.
+
+For the calculation of vega sensitivities, the distribution assumptions (ie log-normal assumptions or normal assumptions) for pricing models are applied as follows:
+
+1. For the computation of a vega GIRR or CSR sensitivity, banks may use either the log-normal or normal assumptions.
+
+2. For the computation of a vega equity, commodity or FX sensitivity, banks must use the log-normal assumption.
+   ^[Since vega ($\frac{\partial V_i}{\partial \sigma_i}$) of an instrument is multiplied by its implied volatility ($\sigma_i$), the vega risk sensitivity for that instrument will be the same under the log-normal assumption and the normal assumption. As a consequence, banks may use a log-normal or normal assumption for GIRR and CSR (in recognition of the trade-offs between constrained specification and computational burden for a standardised approach). For the other risk classes, banks must only use a log-normal assumption (in recognition that this is aligned with common practices across jurisdictions).]
+
+If, for internal risk management, a bank computes vega sensitivities using different definitions than the definitions
+set out in this standard, the bank may transform the sensitivities computed for internal risk management purposes to
+deduce the sensitivities to be used for the calculation of the vega risk measure.
+
+All vega sensitivities must be computed ignoring the impact of credit valuation adjustments (CVA).
+
+## Treatment of index instruments and multi-underlying options
+
+In the delta and curvature risk context: for index instruments and multi-underlying options, a look-through approach
+should be used. However, a bank may opt not to apply the look-through approach for instruments referencing any listed
+and widely recognised and accepted equity or credit index, where:
+
+1. it is possible to look-through the index (ie the constituents and their respective weightings are known);
+2. the index contains at least 20 constituents;
+3. no single constituent contained within the index represents more than 25\% of the total index;
+4. the largest 10\% of constituents represents less than 60\% of the total index; and
+5. the total market capitalisation of all the constituents of the index is no less than USD 40 billion.
+
+For a given instrument, irrespective of whether a look-through approach is adopted or not, the sensitivity inputs used
+for the delta and curvature risk calculation must be consistent.
+
+Where a bank opts not to apply the look-through approach in accordance with [MAR21.31], a single sensitivity shall be
+calculated to each widely recognised and accepted index that an instrument references. The sensitivity to the index
+should be assigned to the relevant delta risk bucket defined in [MAR21.53] and [MAR21.72] as follows:
+
+1. Where more than 75\% of constituents in that index (taking into account the weightings of that index) would be mapped
+   to a specific sector bucket (ie bucket 1 to bucket 11 for equity risk, or bucket 1 to bucket 16 for CSR), the
+   sensitivity to the index shall be mapped to that single specific sector bucket and treated like any other single-name
+   sensitivity in that bucket.
+
+2. In all other cases, the sensitivity may be mapped to an "index" bucket (ie bucket 12 or bucket 13 for equity risk; or
+   bucket 17 or bucket 18 for CSR).
+
+A look-through approach must always be used for indices that do not meet the criteria set out in [MAR21.31](2)
+to [MAR21.31](5), and for any multi-underlying instruments that reference a bespoke set of equities or credit positions.
+
+1. Where a look-through approach is adopted, for index instruments and multi-underlying options other than the CTP, the
+   sensitivities to constituent risk factors from those instruments or options are allowed to net with sensitivities to
+   single-name instruments without restriction.
+
+2. Index CTP instruments cannot be broken down into its constituents (ie the index CTP should be considered a risk
+   factor as a whole) and the above-mentioned netting at the issuer level does not apply either.
+
+3. Where a look-through approach is adopted, it shall be applied consistently through time,
+   ^[In other words, a bank can initially not apply a look-through approach, and later decide to apply it. However once applied (for a certain type of instrument referencing a particular index), the bank will require supervisory approval to revert to a "no look-through" approach.]
+   and shall be used for all identical instruments that reference the same index.
+
+## Treatment of equity investments in funds
+
+For equity investments in funds that can be looked through as set out in [RBC25.8](5)(a), banks must apply a
+look-through approach and treat the underlying positions of the fund as if the positions were held directly by the
+bank (taking into account the bank's share of the equity of the fund, and any leverage in the fund structure), except
+for the funds that meet the following conditions:
+
+1. For funds that hold an index instrument that meets the criteria set out under [MAR21.31], banks must still apply a
+   look-through and treat the underlying positions of the fund as if the positions were held directly by the bank, but
+   the bank may then choose to apply the "no look-through" approach for the index holdings of the fund as set out
+   in [MAR21.33].
+
+2. For funds that track an index benchmark, a bank may opt not to apply the look-through approach and opt to measure the
+   risk assuming the fund is a position in the tracked index only where:
+
+    * the fund has an absolute value of a tracking difference (ignoring fees and commissions) of less than 1\%; and
+
+   * the tracking difference is checked at least annually and is defined as the annualised return difference between the
+     fund and its tracked benchmark over the last 12 months of available data (or a shorter period in the absence of a
+     full 12 months of data).
+
+For equity investments in funds that cannot be looked through (ie do not meet the criterion set out in [RBC25.8](5)(a)),
+but that the bank has access to daily price quotes and knowledge of the mandate of the fund (ie meet both the criteria
+set out in [RBC25.8](5)(b)), banks may calculate capital requirements for the fund in one of three ways:
+
+1. If the fund tracks an index benchmark and meets the requirement set out in [MAR21.35](2)(a) and (b), the bank may
+   assume that the fund is a position in the tracked index, and may assign the sensitivity to the fund to relevant
+   sector specific buckets or index buckets as set out in [MAR21.33].
+
+2. Subject to supervisory approval, the bank may consider the fund as a hypothetical portfolio in which the fund invests
+   to the maximum extent allowed under the fund’s mandate in those assets attracting the highest capital requirements
+   under the sensitivities-based method, and then progressively in those other assets implying lower capital
+   requirements. If more than one risk weight can be applied to a given exposure under the sensitivities-based method,
+   the maximum risk weight applicable must be used.
+
+    * This hypothetical portfolio must be subject to market risk capital requirements on a stand-alone basis for all
+      positions in that fund, separate from any other positions subject to market risk capital requirements.
+
+    * The counterparty credit and CVA risks of the derivatives of this hypothetical portfolio must be calculated using
+      the simplified methodology set out in accordance with paragraph 80(vii)(c) of the banking book equity investment
+      in funds treatment.
+
+3. A bank may treat their equity investment in the fund as an unrated equity exposure to be allocated to the "other
+   sector" bucket (bucket 11). In applying this treatment, banks must also consider whether, given the mandate of the
+   fund, the default risk capital (DRC) requirement risk weight prescribed to the fund is sufficiently prudent (as set
+   out in [MAR22.8]), and whether the RRAO should apply (as set out in [MAR23.6]).
+
+As per the requirement in [RBC25.8](5), net long equity investments in a given fund in which the bank cannot look
+through or does not meet the requirements of [RBC25.8](5) for the fund must be assigned to the banking book. Net short
+positions in funds, where the bank cannot look through or does not meet the requirements of [RBC25.8](5), must be
+excluded from any trading book capital requirements under the market risk framework, with the net position instead
+subjected to a 100\% capital requirement.
+
+## Treatment of vega risk for multi-underlying instruments
+
+In the vega risk context:
+
+1. Multi-underlying options (including index options) are usually priced based on the implied volatility of the option,
+   rather than the implied volatility of its underlying constituents and a look-through approach may not need to be
+   applied, regardless of the approach applied to the delta and curvature risk calculation as set out in [MAR21.31]
+   through [MAR20.35].
+   ^[As specified in the vega risk factor definitions in \[MAR21.8\] to \[MAR21.14\], the implied volatility of an option must be mapped to one or more maturity tenors.]
+
+2. For indices, the vega risk with respect to the implied volatility of the multi-underlying options will be calculated
+   using a sector specific bucket or an index bucket defined in [MAR21.53] and [MAR21.72] as follows:
+
+    * Where more than 75\% of constituents in that index (taking into account the weightings of that index) would be
+      mapped to a single specific sector bucket (ie bucket 1 to bucket 11 for equity risk; or bucket 1 to bucket 16 for
+      CSR), the sensitivity to the index shall be mapped to that single specific sector bucket and treated like any
+      other single-name sensitivity in that bucket.
+
+    * In all other cases, the sensitivity may be mapped to an "index" bucket (ie bucket 12 or bucket 13 for equity risk
+      or bucket 17 or bucket 18 for CSR).
+      
+## Sensitivities-based method: definition of delta risk buckets, risk weights and correlations
+
+[MAR21.41] to [MAR21.89] set out buckets, risk weights and correlation parameters for each risk class to calculate delta
+risk capital requirement as set out in [MAR21.4].
+
+The prescribed risk weights and correlations in [MAR21.41] to [MAR21.89] have been calibrated to the liquidity adjusted
+time horizon related to each risk class.
+
+## Delta GIRR buckets, risk weights and correlations
+
+Each currency is a separate delta GIRR bucket, so all risk factors in risk-free yield curves for the same currency in
+which interest rate-sensitive instruments are denominated are grouped into the same bucket.
+
+For calculating weighted sensitivities, the risk weights for each tenor in risk-free yield curves are set in Table 1 as
+follows:
+
+TODO: TABLE
+
+The risk weight for the inflation risk factor and the cross-currency basis risk factors, respectively, is set at 1.6\%.
+
+For specified currencies by the Basel Committee,
+^[Specified currencies by the Basel Committee are: EUR, USD, GBP, AUD, JPY, SEK, CAD as well as the domestic reporting currency of a bank.]
+the above risk weights may, at the discretion of the bank, be divided by the square root of 2.
+
+For aggregating GIRR risk positions within a bucket, the correlation parameter $\rho_{kl}$ between weighted
+sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same bucket (ie same currency), same assigned tenor, but
+different curves is set at 99.90\%. In aggregating delta risk positions for cross-currency basis risk for onshore and
+offshore curves, which must be considered two different curves as set out in [MAR21.8], a bank may choose to aggregate
+all cross-currency basis risk for a currency (ie "Curr/USD" or "Curr/EUR") for both onshore and offshore curves by a
+simple sum of weighted sensitivities.
+
+The delta risk correlation $\rho_{kl}$ between weighted sensitivities$\mathit{WS}_k$ and $\mathit{WS}_l$ within the same
+bucket with different tenor and same curve is set in the following Table 2: ^[TODO: FOOTNOTE]
+
+TODO: TABLE
+
+Between two weighted sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same bucket with different tenor and
+different curves, the correlation $\rho_{kl}$ is equal to the correlation parameter specified in [MAR21.46] multiplied
+by 99.90\%.
+^[For example, the correlation between a sensitivity to the one-year tenor of the Eonia swap curve and a sensitivity to the five-year tenor of the three-month Euribor swap curve in the same currency is (88.69\%).(0.999)=88.60\%.]
+
+The delta risk correlation $\rho_{kl}$ between a weighted sensitivity $\mathit{WS}_k$ to the inflation curve and a
+weighted sensitivity $\mathit{WS}_l$ to a given tenor of the relevant yield curve is 40\%.
+
+The delta risk correlation $\rho_{kl}$ between a weighted sensitivity $\mathit{WS}_k$ to a cross-currency basis curve and
+a weighted sensitivity $\mathit{WS}_l$ to each of the following curves is 0\%:
+
+1. a given tenor of the relevant yield curve;
+2. the inflation curve; or
+3. another cross-currency basis curve (if relevant).
+
+For aggregating GIRR risk positions across different buckets (ie different currencies), the parameter $\gamma_{bc}$ is
+set at 50\%.
+
+## Delta CSR non-securitisations buckets, risk weights and correlations
+
+For delta CSR non-securitisations, buckets are set along two dimensions – credit quality and sector – as set out in
+Table 3. The CSR non-securitisation sensitivities or risk exposures should first be assigned to a bucket defined before
+calculating weighted sensitivities by applying a risk weight.
+
+TODO: TABLE
+
+To assign a risk exposure to a sector, banks must rely on a classification that is commonly used in the market for
+grouping issuers by industry sector.
+
+1. The bank must assign each issuer to one and only one of the sector buckets in the table under [MAR21.51].
+   
+2. Risk positions from any issuer that a bank cannot assign to a sector in this fashion must be assigned to the other
+   sector (ie bucket 16).
+
+For calculating weighted sensitivities, the risk weights for buckets 1 to 18 are set out in Table 4. Risk weights are
+the same for all tenors (ie 0.5 years, 1 year, 3 years, 5 years, 10 years) within each bucket:
+
+TODO: TABLE
+
+For buckets 1 to 15, for aggregating delta CSR non-securitisations risk positions within a bucket, the correlation
+parameter $\rho_{kl}$ between two weighted sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same bucket, is
+set as follows, where:
+
+1. $\rho_{kl}^{name}$ is equal to 1 where the two names of sensitivities $k$ and $l$ are identical, and 35\% otherwise;
+
+2. $\rho_{kl}^{tenor}$ is equal to 1 if the two tenors of the sensitivities $k$ and $l$ are identical, and to 65\% otherwise; and
+
+3. $\rho_{kl}^{basis}$ is equal to 1 if the two sensitivities are related to same curves, and 99.90\% otherwise.
+
+$$ \rho_{kl} = \rho_{kl}^{name} \times \rho_{kl}^{tenor} \times \rho_{kl}^{basis} $$
+
+For example, a sensitivity to the five-year Apple bond curve and a sensitivity to the 10-year Google CDS curve would be
+35\% . 65\% . 99.90\% = 22.73\%.
+
+For buckets 17 and 18, for aggregating delta CSR non-securitisations risk positions within a bucket, the correlation
+parameter $\rho_{kl}$ between two weighted sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same bucket is
+set as follows, where:
+
+1. $\rho_{kl}^{name}$ is equal to 1 where the two names of sensitivities $k$ and $l$ are identical, and 80\% otherwise;
+
+2. $\rho_{kl}^{tenor}$ is equal to 1 if the two tenors of the sensitivities $k$ and $l$ are identical, and to 65\% otherwise; and
+
+3. $\rho_{kl}^{basis}$ is equal to 1 if the two sensitivities are related to same curves, and 99.90\% otherwise.
+
+$$ \rho_{kl} = \rho_{kl}^{name} \times \rho_{kl}^{tenor} \times \rho_{kl}^{basis} $$
+
+The correlations above do not apply to the other sector bucket (ie bucket 16).
+
+1. The aggregation of delta CSR non-securitisation risk positions within the other sector bucket (ie bucket 16) would be
+   equal to the simple sum of the absolute values of the net weighted sensitivities allocated to this bucket. The same
+   method applies to the aggregation of vega risk positions.
+
+   $$ K_{b (other bucket)} = \sum_k |\mathit{WS}_k| $$
+
+2. The aggregation of curvature CSR non-securitisation risk positions within the other sector bucket (ie bucket 16)
+   would be calculated by the formula below.
+
+   $$ K_{b (other bucket)} = \max \left( \sum_k \max(\mathit{CVR}_k^+, 0), \sum_k \max(\mathit{CVR}_k^-, 0) \right) $$
+
+For aggregating delta CSR non-securitisation risk positions across buckets 1 to 16, the correlation parameter $\gamma_
+{bc}$ is set as follows, where:
+
+1. $\gamma_{bc}^{(rating)}$ is equal to 50\% where the two buckets $b$ and $c$ are both in buckets 1 to 15 and have a
+   different rating category (either IG or HY/NR). $\gamma_{bc}^{(rating)}$ is equal to 1 otherwise; and
+
+2. $\gamma_{bc}^{(sector)}$ is equal to 1 if the two buckets belong to the same sector, and to the specified
+   numbers in Table 5 otherwise.
+   
+$$ \gamma_{bc} = \gamma_{bc}^{(rating)} \times \gamma_{bc}^{(sector)} $$ 
+
+TODO: TABLE
+
+## Delta CSR securitisation (CTP) buckets, risk weights and correlations
+
+Sensitivities to CSR arising from the CTP and its hedges are treated as a separate risk class as set out in MAR21.1].
+The buckets, risk weights and correlations for the CSR securitisations (CTP) apply as follows:
+
+1. The same bucket structure and correlation structure apply to the CSR securitisations (CTP) as those for the CSR
+   non-securitisation framework as set out in [MAR21.51] to [MAR21.57] with an exception of index buckets (ie buckets 17
+   and 18).
+
+2. The risk weights and correlation parameters of the delta CSR non-securitisations are modified to reflect longer
+   liquidity
+
+For calculating weighted sensitivities, the risk weights for buckets 1 to 16 are set out in Table 6. Risk weights are
+the same for all tenors (ie 0.5 years, 1 year, 3 years, 5 years, 10 years) within each bucket:
+
+TODO: TABLE
+
+For aggregating delta CSR securitisations (CTP) risk positions within a bucket, the delta risk correlation $\rho_{kl}$
+is derived the same way as in [MAR21.54] and [MAR21.55], except that the correlation parameter applying when the
+sensitivities are not related to same curves, $\rho_{kl}^{(basis)}$, is modified.
+
+1. $\rho_{kl}^{(basis)}$ is now equal to 1 if the two sensitivities are related to same curves, and 99.00\% otherwise.
+   
+2. The identical correlation parameters for $\rho_{kl}^{(name)}$ and $\rho_{kl}^{(tenor)}$ to CSR non-securitisation as
+   set out in [MAR21.54] and [MAR21.55] apply.
+
+For aggregating delta CSR securitisations (CTP) risk positions across buckets, the correlation parameters for $\gamma_
+{bc}$ are identical to CSR non-securitisation as set out in [MAR21.57].
+
+## Delta CSR securitisation (non-CTP) buckets, risk weights and correlations
+
+For delta CSR securitisations not in the CTP, buckets are set along two dimensions - credit quality and sector - as set
+out in Table 7. The delta CSR securitisation (non-CTP) sensitivities or risk exposures must first be assigned to a
+bucket before calculating weighted sensitivities by applying a risk weight.
+
+TODO: TABLE
+
+To assign a risk exposure to a sector, banks must rely on a classification that is commonly used in the market for
+grouping tranches by type.
+
+1. The bank must assign each tranche to one of the sector buckets in above Table 7.
+
+2. Risk positions from any tranche that a bank cannot assign to a sector in this fashion must be assigned to the other
+   sector (ie bucket 25).
+
+For calculating weighted sensitivities, the risk weights for buckets 1 to 8 (senior IG) are set out in Table 8:
+
+TODO: TABLE
+
+The risk weights for buckets 9 to 16 (non-senior investment grade) are then equal to the corresponding risk weights for
+buckets 1 to 8 scaled up by a multiplication by 1.25. For instance, the risk weight for bucket 9 is equal to $1.25
+\times 0.9\%=1.125\%$.
+
+The risk weights for buckets 17 to 24 (high yield and non-rated) are then equal to the corresponding risk weights for
+buckets 1 to 8 scaled up by a multiplication by 1.75. For instance, the risk weight for bucket 17 is equal to $1.75
+\times 0.9\%=1.575\%$.
+
+The risk weight for bucket 25 is set at 3.5\%.
+
+For aggregating delta CSR securitisations (non-CTP) risk positions within a bucket, the correlation parameter $\rho_
+{kl}$ between two sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same bucket, is set as follows, where:
+
+1. $\rho_{kl}^{(tranche)}$ is equal to 1 where the two names of sensitivities k and l are within the same bucket
+   and related to the same securitisation tranche (more than 80% overlap in notional terms), and 40\% otherwise;
+   
+2. $\rho_{kl}^{(tenor)}$ is equal to 1 if the two tenors of the sensitivities k and l are identical, and to 80\%
+   otherwise; and
+   
+3. $\rho_{kl}^{(basis)}$ is equal to 1 if the two sensitivities are related to same curves, and 99.90\% otherwise.
+
+$$ \rho_{kl} = \rho_{kl}^{tranche} \times \rho_{kl}^{tenor} \times \rho_{kl}^{basis} $$
+
+The correlations above do not apply to the other sector bucket (ie bucket 25).
+
+1. The aggregation of delta CSR securitisations (non-CTP) risk positions within the other sector bucket would be equal
+   to the simple sum of the absolute values of the net weighted sensitivities allocated to this bucket. The same method
+   applies to the aggregation of vega risk positions.
+
+   $$ K_{b (other bucket)} = \sum_k |\mathit{WS}_k| $$
+
+2. The aggregation of curvature CSR risk positions within the other sector bucket (ie bucket 16) would be calculated by
+   the formula below.
+
+   $$ K_{b (other bucket)} = \max \left( \sum_k \max(\mathit{CVR}_k^+, 0), \sum_k \max(\mathit{CVR}_k^-, 0) \right) $$
+
+For aggregating delta CSR securitisations (non-CTP) risk positions across buckets 1 to 24, the correlation parameter
+$\gamma_{bc}$ is set as 0\%.
+
+For aggregating delta CSR securitisations (non-CTP) risk positions between the other sector bucket (ie bucket 25) and
+buckets 1 to 24, the correlation paramete $\gamma_{bc}$ is set at 1. Bucket level capital requirements will be simply
+summed up to the overall risk class level capital requirements, with no diversification or hedging effects recognised
+with any bucket.
+
+## Equity risk buckets, risk weights and correlations
+
+For delta equity risk, buckets are set along three dimensions – market capitalisation, economy and sector – as set out
+in Table 9. The equity risk sensitivities or exposures must first be assigned to a bucket before calculating weighted
+sensitivities by applying a risk weight.
+
+TODO: TABLE
+
+Market capitalisation (market cap) is defined as the sum of the market capitalisations based on the market value of the
+total outstanding shares issued by the same listed legal entity or a group of legal entities across all stock markets
+globally, where the total outstanding shares issued by the group of legal entities refer to cases where the listed
+entity is a parent company of a group of legal entities. Under no circumstances should the sum of the market
+capitalisations of multiple related listed entities be used to determine whether a listed entity is "large market cap"
+or "small market cap".
+
+Large market cap is defined as a market capitalisation equal to or greater than USD 2 billion and small market cap is
+defined as a market capitalisation of less than USD 2 billion.
+
+The advanced economies are Canada, the United States, Mexico, the euro area, the non-euro area western European
+countries (the United Kingdom, Norway, Sweden, Denmark and Switzerland), Japan, Oceania (Australia and New Zealand),
+Singapore and Hong Kong SAR.
+
+To assign a risk exposure to a sector, banks must rely on a classification that is commonly used in the market for grouping issuers by industry sector.
+
+1. The bank must assign each issuer to one of the sector buckets in the table under [MAR21.72] and it must assign all
+   issuers from the same industry to the same sector.
+
+2. Risk positions from any issuer that a bank cannot assign to a sector in this fashion must be assigned to the other
+   sector (ie bucket 11).
+
+3. For multinational multi-sector equity issuers, the allocation to a particular bucket must be done according to the
+   most material region and sector in which the issuer operates.
+
+For calculating weighted sensitivities, the risk weights for the sensitivities to each of equity spot price and equity
+repo rates for buckets 1 to 13 are set out in Table 10:
+
+TODO: TABLE
+
+For aggregating delta equity risk positions within a bucket, the correlation parameter $\rho_{kl}$ between two
+sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same bucket is set at as follows
+
+1. The correlation parameter $\rho_{kl}$ set at 99.90\%, where:
+
+    * one is a sensitivity to an equity spot price and the other a sensitivity to an equity repo rates; and
+    * both are related to the same equity issuer name.
+
+2. The correlation parameter $\rho_{kl}$ is set out in (a) to (d) below, where both sensitivities are to equity spot
+   price, and where:
+
+    * 15\% between two sensitivities within the same bucket that fall under large market cap, emerging market economy (
+      bucket number 1, 2, 3 or 4).
+      
+    * 25\% between two sensitivities within the same bucket that fall under large market cap, advanced economy (bucket
+      number 5, 6, 7 or 8).
+      
+    * 7.5\% between two sensitivities within the same bucket that fall under small market cap, emerging market economy (
+      bucket number 9).
+      
+    * 12.5\% between two sensitivities within the same bucket that fall under small market cap, advanced economy (bucket
+      number 10).
+      
+    * 80\% between two sensitivities within the same bucket that fall under either index bucket (bucket number 12 or 13)
+
+3. The same correlation parameter $\rho_{kl}$ as set out in above (2)(a) to (d) apply, where both sensitivities are to
+   equity repo rates.
+
+4. The correlation parameter $\rho_{kl}$ is set as each parameter specified in above (2)(a) to (d) multiplied by
+   99.90\%, where:
+
+    * One is a sensitivity to an equity spot price and the other a sensitivity to an equity repo rate; and
+    * Each sensitivity is related to a different equity issuer name.
+
+The correlations set out above do not apply to the other sector bucket (ie bucket 11)
+
+1. The aggregation of equity risk positions within the other sector bucket capital requirement would be equal to the
+   simple sum of the absolute values of the net weighted sensitivities allocated to this bucket. The same method applies
+   to the aggregation of vega risk positions.
+
+   $$ K_{b (other bucket)} = \sum_k |\mathit{WS}_k| $$
+
+2. The aggregation of curvature equity risk positions within the other sector bucket (ie bucket 11) would be calculated
+   by the formula:
+
+   $$ K_{b (other bucket)} = \max \left( \sum_k \max(\mathit{CVR}_k^+, 0), \sum_k \max(\mathit{CVR}_k^-, 0) \right) $$
+
+For aggregating delta equity risk positions across buckets 1 to 13, the correlation parameter $\gamma_{bc}$ is set at:
+
+1. 15\% if bucket b and bucket c fall within bucket numbers 1 to 10;
+2. 0\% if either of bucket b and bucket c is bucket 11;
+3. 75\% if bucket b and bucket c are bucket numbers 12 and 13 (i.e. one is bucket 12, one is bucket 13); and
+4. 45\% otherwise.
+
+## Commodity risk buckets, risk weights and correlations
+
+For delta commodity risk, 11 buckets that group commodities by common characteristics are set out in Table 11.
+
+For calculating weighted sensitivities, the risk weights for each bucket are set out in Table 11:
+
+TODO: TABLE PAGE 48
+
