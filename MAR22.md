@@ -434,7 +434,7 @@ Within a bucket (ie for each index) at an index level, the capital requirement f
 is determined in a similar approach to that for non-securitisations.
 
 1. The hedge benefit ratio (HBR), as defined in [MAR22.23], is modified and applied to net short positions in that
-   bucket as in the formula below, where the subscript ctp for the term HBRctp indicates that the HBR is determined
+   bucket as in the formula below, where the subscript ctp for the term $HBR_{ctp}$ indicates that the HBR is determined
    using the combined long and short positions across all indices in the CTP (ie not only the long and short positions
    of the bucket by itself). The summation of risk-weighted amounts in the formula spans all exposures relating to the
    index (ie index tranche, bespoke, non-tranche index or single name).
