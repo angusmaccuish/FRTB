@@ -108,9 +108,102 @@ the following step-by-step approach:
    opposite direction, the GIRR on that portfolio would be zero.
 
 3. The weighted sensitivity $WS_K$ is the product of the net sensitivity $s_k$ and the corresponding risk weight
-   RWk as defined in [MAR21.39] to [MAR21.95]. $$ WS_k = RW_k \times s_k $$
+   $\mathit{RW}_k$ as defined in [MAR21.39] to [MAR21.95]. $$ \mathit{WS}_k = \mathit{RW}_k \times s_k $$
 
 4. Within bucket aggregation: the risk position for delta (respectively vega) bucket b, $K_b$ must be determined by
    aggregating the weighted sensitivities to risk factors within the same bucket using the prescribed correlation $\rho_
    {kl}$ set out in the following formula, where the quantity within the square root function is floored at zero:
-   $$ K_b = 0 $$
+   $$ K_b = \sqrt{ \max \left(0, \sum_k{\mathit{WS}_k^2} + \sum_k \sum_{k \ne l} {\rho_{kl} \mathit{WS}_k \mathit{WS}_l} \right)} $$
+
+5. Across bucket aggregation: The delta (respectively vega) risk capital requirement is calculated by aggregating the
+   risk positions across the delta (respectively vega) buckets within each risk class, using the corresponding
+   prescribed correlations $\gamma_{bc}$ as set out in the following formula, where:
+
+    * $S_b = \sum_k{ \mathit{WS}_k }$ for all risk factors in bucket b, and $S_c = \sum_k{ \mathit{WS}_k }$ in bucket c.
+    * If these values for $S_b$ and $S_c$ described in above [MAR21.4](5)(a) produce a negative number for the overall
+      sum of $\sum{K_b^2} + \sum_b \sum_{c \ne b} {\gamma_{bc} S_b S_c}$, the bank is to calculate the delta (
+      respectively vega) risk capital requirement using an alternative specification whereby
+
+        * $S_b = \max \left[ \min \left( \sum_k{\mathit{WS}_k, K_b} \right), -K_b \right]$ for all risk factors in
+          bucket b; and
+
+        * $S_c = \max \left[ \min \left( \sum_k{\mathit{WS}_k, K_c} \right), -K_c \right]$ for all risk factors in
+          bucket c.
+
+   $$ Delta (respectively, vega) = \sqrt{ \max \left(0, \sum_k{ K_b^2 } + \sum_b \sum_{c \ne b} { \gamma_{bc} S_b S_c } \right)} $$
+   
+## Calculation of the curvature risk capital requirement for each risk class
+
+For each risk class, to calculate curvature risk capital requirements a bank must apply an upward shock and a downward
+shock to each prescribed risk factor and calculate the incremental loss for instruments sensitive to that risk factor
+above that already captured by the delta risk capital requirement using the following step-by-step approach:
+
+1. For each instrument sensitive to curvature risk factor k, an upward shock and a downward shock must be applied to k.
+   The size of shock (ie risk weight) is set out in [MAR21.98] and [MAR21.99].
+
+   * For example for GIRR, all tenors of all the risk free interest rate curves within a given currency (eg three-month
+     Euribor, six-month Euribor, one year Euribor, etc for the euro) must be shifted upward applying the risk weight as
+     set out in [MAR21.99]. The resulting potential loss for each instrument, after the deduction of the delta risk
+     positions, is the outcome of the upward scenario. The same approach must be followed on a downward scenario.
+
+   * If the price of an instrument depends on several risk factors, the curvature risk must be determined separately for
+     each risk factor.
+
+2. The net curvature risk capital requirement, determined by the values $\mathit{CVR}_k^+$ and $\mathit{CVR}_k^-$ for a
+   bank's portfolio for risk factor k described in above [MAR21.5](1) is calculated by the formula below. It calculates
+   the aggregate incremental loss beyond the delta capital requirement for the prescribed shocks, where
+
+   * i is an instrument subject to curvature risks associated with risk factor k;
+
+   * $x_k$ is the current level of risk factor k;
+
+   * $V_i(x_k)$ is the price of instrument i at the current level of risk factor k;
+
+   * $V_i(x_k^{\mathit{RW}^{(\mathit{curvature})+}})$ and $V_i(x_k^{\mathit{RW}^{(\mathit{curvature})-}})$ denote the
+     price of instrument i after $x_k$ is shifted (ie "shocked") upward and downward respectively;
+
+   * $\mathit{RW}^{(\mathit{curvature})}$ is the risk weight for curvature risk factor k for instrument i; and
+
+   * $s_{ik}$ is the delta sensitivity of instrument i with respect to the delta risk factor that corresponds to
+     curvature risk factor k, where:
+
+      * for the FX and equity risk classes $s_{ik}$ is the delta sensitivity of instrument i; and
+
+      * for the GIRR, CSR and commodity risk classes, $s_{ik}$ is the sum of delta sensitivities to all tenors of the
+        relevant curve of instrument i with respect to curvature risk factor k.
+        
+     $$
+     \begin{aligned}[t]
+         \mathit{CVR}_k^+ &= -\sum { \left( V_i(x_k^{\mathit{RW}^{(\mathit{curvature})+}}) - V_i(x_k) - \mathit{RW}^{(\mathit{curvature})} \times s_{ik} \right)}\\
+         \mathit{CVR}_k^- &= -\sum { \left( V_i(x_k^{\mathit{RW}^{(\mathit{curvature})-}}) - V_i(x_k) + \mathit{RW}^{(\mathit{curvature})} \times s_{ik} \right)}
+     \end{aligned}
+     $$
+
+3. Within bucket aggregation: the curvature risk exposure must be aggregated within each bucket using the corresponding
+   prescribed correlation $\rho_{kl}$ as set out in the following formula, where:
+
+   * The bucket level capital requirement ($K_b$) is determined as the greater of the capital requirement under the
+     upward scenario ($K_b^+$) and the capital requirement under the downward scenario ($K_b^-$). Notably, the selection
+     of upward and downward scenarios is not necessarily the same across the high, medium and low correlations scenarios
+     specified in [MAR21.6].
+
+      * Where $K_b = K_b^+$, this shall be termed "selecting the upward scenario".
+
+      * Where $K_b = K_b^-$, this shall be termed "selecting the downward scenario".
+
+      * In the specific case where $K_b^+ = K_b^-$, if $\sum_k {\mathit{CVR}_k^+} > \sum_k {\mathit{CVR}_k^-}$, it is
+        deemed that the upward scenario is selected; otherwise the downward scenario is selected.
+
+   * $\psi(\mathit{CVR}_k, \mathit{CVR}_l)$ takes the value 0 if $\mathit{CVR}_k$ and $\mathit{CVR}_l$ both have
+     negative signs and the value 1 otherwise.
+     
+     $$ K_b = \max(K_b^+, K_b^-) $$
+   
+     where
+   
+     $$
+     \begin{aligned}[t]
+         K_b^+ &= ...\\
+         K_b^- &= ...
+     \end{aligned}
+     $$
