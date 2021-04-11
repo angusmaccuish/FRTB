@@ -1069,5 +1069,159 @@ For delta commodity risk, 11 buckets that group commodities by common characteri
 
 For calculating weighted sensitivities, the risk weights for each bucket are set out in Table 11:
 
-TODO: TABLE PAGE 48
+TODO: TABLE 
+
+For the purpose of aggregating commodity risk positions within a bucket using a correlation parameter, the correlation
+parameter $\rho_{kl}$ between two sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same bucket, is set as
+follows, where:
+
+1. $\rho_{kl}^{cty}$ is equal to 1 where the two commodities of sensitivities k and l are identical, and to the
+   intra-bucket correlations in Table 12 otherwise, where, any two commodities are considered distinct commodities if in
+   the market two contracts are considered distinct when the only difference between each other is the underlying
+   commodity to be delivered. For example, WTI and Brent in bucket 2 (ie energy - liquid combustibles) would typically
+   be treated as distinct commodities;
+
+2. $\rho_{kl}^{tenor}$ is equal to 1 if the two tenors of the sensitivities k and l are identical, and to 99.00\%
+   otherwise; and
+
+3. $\rho_{kl}^{basis}$ is equal to 1 if the two sensitivities are identical in the delivery location of a
+   commodity, and 99.90\% otherwise.
+
+$$ \rho_{kl} = \rho_{kl}^{cty} \times \rho_{kl}^{tenor} \times \rho_{kl}^{basis} $$
+
+For example, the correlation between the sensitivity to Brent, one-year tenor, for delivery in Le Havre and the
+sensitivity to WTI, five-year tenor, for delivery in Oklahoma is 95\% . 99.00\% . 99.90\% = 93.96\%.
+
+For determining whether the commodity correlation parameter $\rho_{kl}^{cty}$ as set out in Table 12
+in [MAR21.83](1)(a) should apply, this paragraph provides non-exhaustive examples of further definitions of distinct
+commodities as follows:
+
+1. For bucket 3 (energy - electricity and carbon trading):
+
+   * Each time interval (i) at which the electricity can be delivered and (ii) that is specified in a contract that is
+     made on a financial market is considered a distinct electricity commodity (eg peak and off-peak).
+
+   * Electricity produced in a specific region (eg Electricity NE, Electricity SE or Electricity North) is considered a
+     distinct electricity commodity.
+
+2. For bucket 4 (freight):
+
+   * Each combination of freight type and route is considered a distinct commodity.
+   * Each week at which a good has to be delivered is considered a distinct commodity.
+
+For aggregating delta commodity risk positions across buckets, the correlation parameter $\gamma_{bc}$ is set as
+follows:
+
+1. 20\% if bucket $b$ and bucket $c$ fall within bucket numbers 1 to 10; and
+2. 0\% if either bucket $b$ or bucket $c$ is bucket number 11.
+
+## Foreign exchange risk buckets, risk weights and correlations
+
+An FX risk bucket is set for each exchange rate between the currency in which an instrument is denominated and the
+reporting currency.
+
+A unique relative risk weight equal to 15\% applies to all the FX sensitivities.
+
+For the specified currency pairs by the Basel Committee,
+^[Specified currency pairs by the Basel Committee are: USD/EUR, USD/JPY, USD/GBP, USD/AUD, USD/CAD, USD/CHF, USD/MXN, USD/CNY, USD/NZD, USD/RUB, USD/HKD, USD/SGD, USD/TRY, USD/KRW, USD/SEK, USD/ZAR, USD/INR, USD/NOK, USD/BRL.]
+and for currency pairs forming first-order crosses across these specified currency pairs,
+^[For example, EUR/AUD is not among the selected currency pairs specified by the Basel Committee, but is a first-order cross of USD/EUR and USD/AUD.]
+the above risk weight may at the discretion of the bank be divided by the square root of 2.
+
+For aggregating delta FX risk positions across buckets, the correlation parameter $\gamma_{bc}$ is uniformly set to
+60\%.
+
+## Sensitivities-based method: definition of vega risk buckets, risk weights and correlations
+
+[MAR21.91] to [MAR21.95] set out buckets, risk weights and correlation parameters to calculate vega risk capital
+requirement as set out in [MAR21.4].
+
+The same bucket definitions for each risk class are used for vega risk as for delta risk.
+
+For calculating weighted sensitivities for vega risk, the risk of market illiquidity is incorporated into the
+determination of vega risk, by assigning different liquidity horizons for each risk class as set out in Table 13. The
+risk weight for each risk class ^[TODO] is also set out in Table 13.
+
+TODO: TABLE
+
+For aggregating vega GIRR risk positions within a bucket, the correlation parameter $\rho_{kl}$ is set as follows,
+where:
+
+1. $\rho_{kl}^{(\text{option maturity})}$ is equal to $e^{-\alpha \frac{|T_k-T_l|}{\min(T_k; T_l)}}$, where:
+
+   * $\alpha$ is set at 1\%;
+
+   * $T_k$ (respectively $T_l$) is the maturity of the option from which the vega sensitivity $\mathit{VR}_k$ 
+     ($\mathit{VR}_l$) is derived, expressed as a number of years; and
+     
+2. $\rho_{kl}^{(\text{underlying maturity})}$ is equal to $e^{-\alpha \frac{|T_k^U-T_l^U|}{\min(T_k^U; T_l^U)}}$, where:
+
+   * $\alpha$ is set at 1\%;
+
+   * $T_k^U$ (respectively $T_l^U$) is the maturity of the underlying of the option from which the sensitivity
+     $\mathit{VR}_k$ ($\mathit{VR}_l$) is derived, expressed as a number of years after the maturity of the option.
+     
+$$ \rho_{kl} = \min \left[ \rho_{kl}^{(\text{option maturity})} \rho_{kl}^{(\text{underlying maturity})}; 1\right] $$
+
+For aggregating vega risk positions within a bucket of the other risk classes (ie non-GIRR), the correlation parameter 
+$\rho_{kl}$ is set as follows, where:
+
+1. $\rho_{kl}^\text{DELTA}$ is equal to the correlation that applies between the delta risk factors that correspond to
+   vega risk factors $k$ and $l$. For instance, if $k$ is the vega risk factor from equity option X and $l$ is the vega
+   risk factor from equity option Y then $\rho_{kl}^\text{DELTA}$ is the delta correlation applicable between X and Y;
+   and
+
+2. $\rho_{kl}^{(\text{option maturity})}$ is defined as in [MAR21.93]:
+
+$$ \rho_{kl} = \min \left[ \rho_{kl}^{(\text{DELTA})} \rho_{kl}^{(\text{option maturity})}; 1 \right] $$
+
+For aggregating vega risk positions across different buckets within a risk class (GIRR and non-GIRR), the same
+correlation parameters for $\gamma_{bc}$, as specified for delta correlations for each risk class in [MAR21.39]
+to [MAR21.89] are to be used for the aggregation of vega risk (eg $\gamma_{bc}$ = 50\% is to be used for the aggregation
+of vega risk sensitivities across different GIRR buckets).
+
+## Sensitivities-based method: definition of curvature risk buckets, risk weights and correlations
+
+[MAR21.97] to [MAR21.101] set out buckets, risk weights and correlation parameters to calculate curvature risk capital
+requirement as set out in [MAR21.5].
+
+The delta buckets are replicated for the calculation of curvature risk capital requirement, unless specified otherwise
+in the preceding paragraphs within [MAR21.8] to [MAR21.89].
+
+For calculating the net curvature risk capital requirement $\mathit{CVR}_k$ for risk factor $k$ for FX and equity risk
+classes, the curvature risk weight, which is the size of a shock to the given risk factor, is a relative shift equal to
+the respective delta risk weight. For FX curvature, for options that do not reference a bank's reporting currency (or
+base currency as set out in [MAR21.14](b)) as an underlying, net curvature risk charges ($\mathit{CVR}_k^+$ and
+$\mathit{CVR}_k^-$) may be divided by a scalar of 1.5. Alternatively, and subject to supervisory approval, a bank may
+apply the scalar of 1.5 consistently to all FX instruments provided curvature sensitivities are calculated for all
+currencies, including sensitivities determined by shocking the reporting currency (or base currency where used) relative
+to all other currencies.
+
+For calculating the net curvature risk capital requirement $\mathit{CVR}_k$ for curvature risk factor $k$ for GIRR, CSR
+and commodity risk classes, the curvature risk weight is the parallel shift of all the tenors for each curve based on
+the highest prescribed delta risk weight for each risk class. For example, in the case of GIRR the risk weight assigned
+to 0.25-year tenor (ie the most punitive tenor risk weight) is applied to all the tenors simultaneously for each
+risk-free yield curve (consistent with a "translation", or "parallel shift" risk calculation).
+
+For aggregating curvature risk positions within a bucket, the curvature risk correlations $\rho_{kl}$ are determined by
+squaring the corresponding delta correlation parameters $\rho_{kl}$ except for CSR non-securitisations and CSR
+securitisations (CTP). In applying the high and low correlations scenario set out in [MAR21.6], the curvature risk
+capital requirements are calculated by applying the curvature correlation parameters $\rho_{kl}$ determined in this
+paragraph.
+
+1. For CSR non-securitisations and CSR securitisations (CTP), consistent with [MAR21.9] which defines a bucket along one
+   dimension (ie the relevant credit spread curve), the correlation parameter $\rho_{kl}$ as defined in [MAR21.54]
+   and [MAR21.55] is not applicable to the curvature risk capital requirement calculation. Thus, the correlation
+   parameter is determined by whether the two names of weighted sensitivities are the same. In the formula in [MAR21.54]
+   and [MAR21.55], the correlation parameters $\rho_{kl}^{(\text{basis})}$ and $\rho_{kl}^{(\text{tenor})}$ need not
+   apply and only correlation parameter $\rho_{kl}^{(\text{name})}$ applies between two weighted sensitivities within
+   the same bucket. This correlation parameter should be squared.
+
+For aggregating curvature risk positions across buckets, the curvature risk correlations $\gamma_{bc}$ are determined by
+squaring the corresponding delta correlation parameters $\gamma_{bc}$. For instance, when aggregating $\mathit{CVR}_
+\text{EUR}$ and $\mathit{CVR}_\text{USD}$ for the GIRR, the correlation should be $\text{50\%}^2 = 25\%. In applying the
+high and low correlations scenario set out in [MAR21.6], the curvature risk capital requirements are calculated by
+applying the curvature correlation parameters $\gamma_{bc}$, (ie the square of the corresponding delta correlation
+parameter).
+
 
