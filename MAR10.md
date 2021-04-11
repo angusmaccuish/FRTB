@@ -1,4 +1,5 @@
 \newpage
+
 # MAR10 Market risk terminology
 
 ## General terminology
