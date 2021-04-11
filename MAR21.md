@@ -92,7 +92,7 @@ delta, vega and curvature capital requirements. The relevant paragraphs that des
 
 ## Calculation of the delta and vega risk capital requirement for each risk class
 
-For each risk class, a bank must determine its instruments’ sensitivity to a set of prescribed risk factors, risk weight
+For each risk class, a bank must determine its instruments' sensitivity to a set of prescribed risk factors, risk weight
 those sensitivities, and aggregate the resulting risk-weighted sensitivities separately for delta and vega risk using
 the following step-by-step approach:
 
@@ -317,7 +317,7 @@ The total capital requirement under the sensitivities-based method is aggregated
 
 4. Vega GIRR: within each currency, the GIRR vega risk factors are the implied volatilities of options that reference
    GIRR-sensitive underlyings; as defined along two dimensions:
-   ^[For example, an option with a forward starting cap, lasting 12 months, consists of four consecutive caplets on USD three-month Libor. There are four (independent) options, with option expiry dates in 12, 15, 18 and 21 months. These options are all on underlying USD three-month Libor; the underlying always matures three months after the option expiry date (its residual maturity being three months). Therefore, the implied volatilities for a regular forward starting cap, which would start in one year and last for 12 months should be defined along the following two dimensions: (i) the maturity of the option’s individual components (caplets) - 12, 15, 18 and 21 months; and (ii) the residual maturity of the underlying of the option - three months.]
+   ^[For example, an option with a forward starting cap, lasting 12 months, consists of four consecutive caplets on USD three-month Libor. There are four (independent) options, with option expiry dates in 12, 15, 18 and 21 months. These options are all on underlying USD three-month Libor; the underlying always matures three months after the option expiry date (its residual maturity being three months). Therefore, the implied volatilities for a regular forward starting cap, which would start in one year and last for 12 months should be defined along the following two dimensions: (i) the maturity of the option's individual components (caplets) - 12, 15, 18 and 21 months; and (ii) the residual maturity of the underlying of the option - three months.]
 
     * The maturity of the option: the implied volatility of the option as mapped to one or several of the following
       maturity tenors: 0.5 years, 1 year, 3 years, 5 years and 10 years.
@@ -593,7 +593,7 @@ is measured by multiplying vega by the implied volatility of the option as follo
 1. vega, $\frac{\partial V_i}{\partial \sigma_i}$, is defined as the change in the market value of the option $V_i$ as a
    result of a small amount of change to the implied volatility $\sigma_i$; and
 
-2. the instrument’s vega and implied volatility used in the calculation of vega sensitivities must be sourced from
+2. the instrument's vega and implied volatility used in the calculation of vega sensitivities must be sourced from
    pricing models used by the independent risk control unit of the bank.
 
 $$ s_k = \text{vega} \times \text{implied volatility} $$
@@ -703,7 +703,7 @@ set out in [RBC25.8](5)(b)), banks may calculate capital requirements for the fu
    sector specific buckets or index buckets as set out in [MAR21.33].
 
 2. Subject to supervisory approval, the bank may consider the fund as a hypothetical portfolio in which the fund invests
-   to the maximum extent allowed under the fund’s mandate in those assets attracting the highest capital requirements
+   to the maximum extent allowed under the fund's mandate in those assets attracting the highest capital requirements
    under the sensitivities-based method, and then progressively in those other assets implying lower capital
    requirements. If more than one risk weight can be applied to a given exposure under the sensitivities-based method,
    the maximum risk weight applicable must be used.

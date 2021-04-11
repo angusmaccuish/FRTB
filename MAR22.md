@@ -65,7 +65,7 @@ securities denominated in a currency other than that of the issuing government.
 For claims on an equity investment in a fund that is subject to the treatment specified in [MAR21.36](3) (ie treated as
 an unrated “other sector” equity), the equity investment in the fund shall be treated as an unrated equity instrument.
 Where the mandate of that fund allows the fund to invest in primarily high-yield or distressed names, banks shall apply
-the maximum risk weight per Table 2 in [MAR 22.24] that is achievable under the fund’s mandate (by calculating the
+the maximum risk weight per Table 2 in [MAR 22.24] that is achievable under the fund's mandate (by calculating the
 effective average risk weight of the fund when assuming that the fund invests first in defaulted instruments to the
 maximum possible extent allowed under its mandate, and then in CCC-rated names to the maximum possible extent, and then
 B-rated, and then BB-rated). Neither offsetting nor diversification between these generated exposures and other
@@ -135,7 +135,7 @@ position.
       
     * In the case of a call option on a bond, the notional amount to be used in the JTD calculation is zero (since, in
       the event of default, the call option will not be exercised). In this case, a JTD would extinguish the call
-      option’s value and this loss would be captured through the mark-to-market P&L term in the JTD calculation.
+      option's value and this loss would be captured through the mark-to-market P&L term in the JTD calculation.
 
 2. Table 1 illustrates examples of the notional amounts and market values for a long credit position with a
    mark-to-market loss to be used in the JTD calculation, where:
@@ -164,7 +164,7 @@ greater.^[Note that this paragraph refers to the scaling of gross JTD (ie not ne
 position with a six month maturity would be weighted by one-half, while the JTD for a position with a one year maturity
 would have no scaling applied to the JTD.
 
-Cash equity positions (ie stocks) are assigned to a maturity of either more than one year or three months, at banks’
+Cash equity positions (ie stocks) are assigned to a maturity of either more than one year or three months, at banks'
 discretion.
 
 For derivative exposures, the maturity of the derivative contract is considered in determining the offsetting criterion,
@@ -192,7 +192,7 @@ Exposures to the same obligator may be offset as follows:
     * Exposures with maturities longer than the capital horizon (one year) may be fully offset.
       
     * An exposure to an obligor comprising a mix of long and short exposures with a maturity less than the capital
-      horizon (equal to one year) must be weighted by the ratio of the exposure’s maturity relative to the capital
+      horizon (equal to one year) must be weighted by the ratio of the exposure's maturity relative to the capital
       horizon. For example, with the one-year capital horizon, a three-month short exposure would be weighted so that
       its benefit against long exposures of longer-than-one-year maturity would be reduced to one quarter of the
       exposure size.
@@ -383,7 +383,7 @@ to JTD risk positions for securitisations (non-CTP).
    
 2. Long and short exposures that are perfect replications through decomposition may be offset as follows. When the
    offsetting involves decomposing single name equivalent exposures, decomposition using a valuation model would be
-   allowed in certain cases as follows. Such decomposition is the sensitivity of the security’s value to the default of
+   allowed in certain cases as follows. Such decomposition is the sensitivity of the security's value to the default of
    the underlying single name obligor. Decomposition with a valuation model is defined as follows: a single name
    equivalent constituent of a securitisation (eg tranched position) is the difference between the unconditional value
    of the securitisation and the conditional value of the securitisation assuming that the single name defaults, with

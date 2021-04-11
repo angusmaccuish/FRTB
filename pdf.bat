@@ -1,1 +1,1 @@
-pandoc -o FRTB.pdf -s --metadata-file=FRTB.yml MAR10.md MAR11.md MAR21.md MAR22.md
+pandoc -o FRTB.pdf -s --metadata-file=FRTB.yml MAR10.md MAR11.md  MAR12.md MAR21.md MAR22.md

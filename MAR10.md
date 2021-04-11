@@ -39,7 +39,7 @@ underlying positions were held directly by the bank.
 Risk factor: a principal determinant of the change in value of an instrument (eg an exchange rate or interest rate).
 
 Risk position: the portion of the current value of an instrument that may be subject to losses due to movements in a
-risk factor. For example, a bond denominated in a currency different to a bank’s reporting currency has risk positions
+risk factor. For example, a bond denominated in a currency different to a bank's reporting currency has risk positions
 in general interest rate risk, credit spread risk (non-securitisation) and FX risk, where the risk positions are the
 potential losses to the current value of the instrument that could occur due to a change in the relevant underlying risk
 factors (interest rates, credit spreads, or exchange rates).
@@ -52,7 +52,7 @@ portfolio), credit spread risk (securitisation: correlation trading portfolio), 
 
 ## Terminology for risk metrics
 
-Sensitivity: a bank’s estimate of the change in value of an instrument due to a small change in one of its underlying
+Sensitivity: a bank's estimate of the change in value of an instrument due to a small change in one of its underlying
 risk factors. Delta and vega risks are sensitivities
 
 Delta risk: the linear estimate of the change in value of a financial instrument due to a movement in the value of a
@@ -97,8 +97,8 @@ or offset risk arising from other risk positions, nor be diversified, hedged or 
 
 Real prices: a term used for assessing whether risk factors pass the risk factor eligibility test. A price will be
 considered real if it is (i) a price from an actual transaction conducted by the bank, (ii) a price from an actual
-transaction between other arm’s length parties (eg at an exchange), or (iii) a price taken from a firm quote (ie a price
-at which the bank could transact with an arm’s length party).
+transaction between other arm's length parties (eg at an exchange), or (iii) a price taken from a firm quote (ie a price
+at which the bank could transact with an arm's length party).
 
 Modellable risk factor: risk factors that are deemed modellable, based on the number of representative real price
 observations and additional qualitative principles related to the data used for the calibration of the ES model. Risk
