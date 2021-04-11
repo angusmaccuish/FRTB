@@ -1219,8 +1219,8 @@ paragraph.
 
 For aggregating curvature risk positions across buckets, the curvature risk correlations $\gamma_{bc}$ are determined by
 squaring the corresponding delta correlation parameters $\gamma_{bc}$. For instance, when aggregating $\mathit{CVR}_
-\text{EUR}$ and $\mathit{CVR}_\text{USD}$ for the GIRR, the correlation should be $\text{50\%}^2 = 25\%. In applying the
-high and low correlations scenario set out in [MAR21.6], the curvature risk capital requirements are calculated by
+\text{EUR}$ and $\mathit{CVR}_\text{USD}$ for the GIRR, the correlation should be $\text{50\%}^2$ = 25\%. In applying
+the high and low correlations scenario set out in [MAR21.6], the curvature risk capital requirements are calculated by
 applying the curvature correlation parameters $\gamma_{bc}$, (ie the square of the corresponding delta correlation
 parameter).
 
