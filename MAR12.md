@@ -2,7 +2,7 @@
 
 # MAR12 Definition of a trading desk
 
-This chapter defines a trading desk, which is the level at which model approval is granted.
+*This chapter defines a trading desk, which is the level at which model approval is granted.*
 
 For the purposes of market risk capital calculations, a trading desk is a group of traders or trading accounts that
 implements a well-defined business strategy operating within a clear risk management structure.

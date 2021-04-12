@@ -2,7 +2,7 @@
 
 # MAR31 Internal models approach: model requirements
 
-This chapter sets out specification and model eligibility for risk factors per the internal models approach.
+*This chapter sets out specification and model eligibility for risk factors per the internal models approach.*
 
 ## Specification of market risk factors
 

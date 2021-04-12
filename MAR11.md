@@ -2,8 +2,8 @@
 
 # MAR11 Definitions and application of market risk
 
-This chapter defines the methods available for calculating and the scope of application of market risk capital
-requirements.
+*This chapter defines the methods available for calculating and the scope of application of market risk capital
+requirements.*
 
 ## Definition and scope of application
 

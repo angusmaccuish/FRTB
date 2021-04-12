@@ -2,8 +2,8 @@
 
 # Standardised approach: default risk capital requirement {#MAR22}
 
-This chapter sets out the calculation of the default risk capital requirement under the standardised approach for market
-risk.
+*This chapter sets out the calculation of the default risk capital requirement under the standardised approach for market
+risk.*
 
 ## Main concepts of default risk capital requirements {#MAR22.1}
 

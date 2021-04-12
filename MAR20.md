@@ -2,8 +2,8 @@
 
 # MAR20 Standardised approach: general provisions and structure
 
-This chapter sets out the general provisions and the structure of the standardised approach for calculating
-risk-weighted assets for market risk.
+*This chapter sets out the general provisions and the structure of the standardised approach for calculating
+risk-weighted assets for market risk.*
 
 ## General provisions
 

@@ -2,7 +2,7 @@
 
 # MAR30 Internal models approach: general provisions
 
-This chapter sets out the general criteria for banks' use of the internal models approach.
+*This chapter sets out the general criteria for banks' use of the internal models approach.*
 
 ## General criteria
 

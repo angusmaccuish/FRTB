@@ -2,8 +2,8 @@
 
 # RBC25 Boundary between the banking book and the trading book
 
-This chapter sets out the instruments to be included in the trading book (which are subject to market risk capital
-requirements) and those to be included in the banking book (which are subject to credit risk capital requirements).
+*This chapter sets out the instruments to be included in the trading book (which are subject to market risk capital
+requirements) and those to be included in the banking book (which are subject to credit risk capital requirements).*
 
 ## Scope of the trading book
 

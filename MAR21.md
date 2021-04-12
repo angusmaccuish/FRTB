@@ -2,7 +2,8 @@
 
 # MAR21 Standardised approach: sensitivities-based method
 
-This chapter sets out the calculation of the sensitivities-based method under the standardised approach for market risk.
+*This chapter sets out the calculation of the sensitivities-based method under the standardised approach for market
+risk.*
 
 ## Main concepts of the sensitivities-based method
 

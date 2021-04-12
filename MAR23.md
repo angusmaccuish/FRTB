@@ -2,7 +2,7 @@
 
 # MAR23 Standardised approach: residual risk add-on
 
-This chapter sets out the calculation of residual risk add-on under the standardised approach for market risk.
+*This chapter sets out the calculation of residual risk add-on under the standardised approach for market risk.*
 
 ## Introduction
 

@@ -4,8 +4,8 @@
 
 ## General terminology
 
-This chapter provides a high-level description of terminologies used in the market risk and credit valuation adjustment
-risk frameworks.
+*This chapter provides a high-level description of terminologies used in the market risk and credit valuation adjustment
+risk frameworks.*
 
 Market risk: the risk of losses in on- and off-balance sheet risk positions arising from movements in market prices.
 
