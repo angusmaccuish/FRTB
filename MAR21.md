@@ -763,7 +763,8 @@ which interest rate-sensitive instruments are denominated are grouped into the s
 For calculating weighted sensitivities, the risk weights for each tenor in risk-free yield curves are set in Table 1 as
 follows:
 
-TODO: TABLE
+![Table 1](images/MAR21/table1.png)
+*Table 1*
 
 The risk weight for the inflation risk factor and the cross-currency basis risk factors, respectively, is set at 1.6\%.
 
@@ -781,7 +782,8 @@ simple sum of weighted sensitivities.
 The delta risk correlation $\rho_{kl}$ between weighted sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same
 bucket with different tenor and same curve is set in the following Table 2:^[TODO: FOOTNOTE]
 
-TODO: TABLE
+![Table 2](images/MAR21/table2.png)
+*Table 2*
 
 Between two weighted sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same bucket with different tenor and
 different curves, the correlation $\rho_{kl}$ is equal to the correlation parameter specified in [MAR21.46] multiplied
@@ -806,7 +808,8 @@ For delta CSR non-securitisations, buckets are set along two dimensions - credit
 Table 3. The CSR non-securitisation sensitivities or risk exposures should first be assigned to a bucket defined before
 calculating weighted sensitivities by applying a risk weight.
 
-TODO: TABLE
+![Table 3](images/MAR21/table3.png)
+*Table 3*
 
 To assign a risk exposure to a sector, banks must rely on a classification that is commonly used in the market for
 grouping issuers by industry sector.
@@ -819,7 +822,8 @@ grouping issuers by industry sector.
 For calculating weighted sensitivities, the risk weights for buckets 1 to 18 are set out in Table 4. Risk weights are
 the same for all tenors (ie 0.5 years, 1 year, 3 years, 5 years, 10 years) within each bucket:
 
-TODO: TABLE
+![Table 4](images/MAR21/table4.png)
+*Table 4*
 
 For buckets 1 to 15, for aggregating delta CSR non-securitisations risk positions within a bucket, the correlation
 parameter $\rho_{kl}$ between two weighted sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same bucket, is
@@ -874,7 +878,8 @@ For aggregating delta CSR non-securitisation risk positions across buckets 1 to 
    
 $$ \gamma_{bc} = \gamma_{bc}^{(rating)} \times \gamma_{bc}^{(sector)} $$ 
 
-TODO: TABLE
+![Table 5](images/MAR21/table5.png)
+*Table 5*
 
 ## Delta CSR securitisation (CTP) buckets, risk weights and correlations
 
@@ -891,7 +896,8 @@ The buckets, risk weights and correlations for the CSR securitisations (CTP) app
 For calculating weighted sensitivities, the risk weights for buckets 1 to 16 are set out in Table 6. Risk weights are
 the same for all tenors (ie 0.5 years, 1 year, 3 years, 5 years, 10 years) within each bucket:
 
-TODO: TABLE
+![Table 6](images/MAR21/table6.png)
+*Table 6*
 
 For aggregating delta CSR securitisations (CTP) risk positions within a bucket, the delta risk correlation $\rho_{kl}$
 is derived the same way as in [MAR21.54] and [MAR21.55], except that the correlation parameter applying when the
@@ -911,7 +917,8 @@ For delta CSR securitisations not in the CTP, buckets are set along two dimensio
 out in Table 7. The delta CSR securitisation (non-CTP) sensitivities or risk exposures must first be assigned to a
 bucket before calculating weighted sensitivities by applying a risk weight.
 
-TODO: TABLE
+![Table 7](images/MAR21/table7.png)
+*Table 7*
 
 To assign a risk exposure to a sector, banks must rely on a classification that is commonly used in the market for
 grouping tranches by type.
@@ -923,7 +930,8 @@ grouping tranches by type.
 
 For calculating weighted sensitivities, the risk weights for buckets 1 to 8 (senior IG) are set out in Table 8:
 
-TODO: TABLE
+![Table 8](images/MAR21/table8.png)
+*Table 8*
 
 The risk weights for buckets 9 to 16 (non-senior investment grade) are then equal to the corresponding risk weights for
 buckets 1 to 8 scaled up by a multiplication by 1.25. For instance, the risk weight for bucket 9 is equal to $1.25
@@ -975,7 +983,8 @@ For delta equity risk, buckets are set along three dimensions - market capitalis
 in Table 9. The equity risk sensitivities or exposures must first be assigned to a bucket before calculating weighted
 sensitivities by applying a risk weight.
 
-TODO: TABLE
+![Table 9](images/MAR21/table9.png)
+*Table 9*
 
 Market capitalisation (market cap) is defined as the sum of the market capitalisations based on the market value of the
 total outstanding shares issued by the same listed legal entity or a group of legal entities across all stock markets
@@ -1006,7 +1015,8 @@ grouping issuers by industry sector.
 For calculating weighted sensitivities, the risk weights for the sensitivities to each of equity spot price and equity
 repo rates for buckets 1 to 13 are set out in Table 10:
 
-TODO: TABLE
+![Table 10](images/MAR21/table10.png)
+*Table 10*
 
 For aggregating delta equity risk positions within a bucket, the correlation parameter $\rho_{kl}$ between two
 sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same bucket is set at as follows
@@ -1068,7 +1078,8 @@ For delta commodity risk, 11 buckets that group commodities by common characteri
 
 For calculating weighted sensitivities, the risk weights for each bucket are set out in Table 11:
 
-TODO: TABLE 
+![Table 11](images/MAR21/table11.png)
+*Table 11*
 
 For the purpose of aggregating commodity risk positions within a bucket using a correlation parameter, the correlation
 parameter $\rho_{kl}$ between two sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same bucket, is set as
@@ -1087,6 +1098,9 @@ follows, where:
    commodity, and 99.90\% otherwise.
 
 $$ \rho_{kl} = \rho_{kl}^{cty} \times \rho_{kl}^{tenor} \times \rho_{kl}^{basis} $$
+
+![Table 12](images/MAR21/table12.png)
+*Table 12*
 
 For example, the correlation between the sensitivity to Brent, one-year tenor, for delivery in Le Havre and the
 sensitivity to WTI, five-year tenor, for delivery in Oklahoma is 95\% . 99.00\% . 99.90\% = 93.96\%.
@@ -1141,7 +1155,8 @@ For calculating weighted sensitivities for vega risk, the risk of market illiqui
 determination of vega risk, by assigning different liquidity horizons for each risk class as set out in Table 13. The
 risk weight for each risk class^[TODO] is also set out in Table 13.
 
-TODO: TABLE
+![Table 13](images/MAR21/table13.png)
+*Table 13*
 
 For aggregating vega GIRR risk positions within a bucket, the correlation parameter $\rho_{kl}$ is set as follows,
 where:
