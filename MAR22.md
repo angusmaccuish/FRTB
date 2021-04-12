@@ -98,8 +98,8 @@ and loss (P&L) already realised on the position, where:
 
 $$
 \begin{aligned}[t] 
-   JTD_{long}  &= \max(LGD \times notional + P\&L, 0)\\ 
-   JTD_{short} &= \min(LGD \times notional + P\&L, 0)   
+   \mathit{JTD}_\text{long}  &= \max(\text{LGD} \times \text{notional} + \text{P\&L}, 0)\\
+   \mathit{JTD}_\text{short} &= \min(\text{LGD} \times \text{notional} + \text{P\&L}, 0)   
 \end{aligned}
 $$
 
@@ -146,17 +146,8 @@ position.
       
     * the strike amount of the bond option is expressed in terms of the bond price (not the yield).
 
-| Instrument         | Notional           | Bond-equivalent market value            | P&L                                |
-|--------------------+--------------------+-----------------------------------------+------------------------------------|
-| Bond               | Face value of bond | Market value of bond                    | Market value – face value          |
-| CDS                | Notional of CDS    | Notional of CDS                         | – \|MtM value of CDS\|             |
-|                    |                    | – \|mark-to-market (MtM) value of CDS\| |                                    |
-| Sold put option    | Notional of option | Strike amount                           | (Strike – \|MtM value of option\|) |
-| on a bond          |                    | – \|MtM value of option\|               | – Notional                         |
-| Bought call option |                    | MtM value of option                     | MtM value of option                |
-| on a bond          | 0                  |                                         |                                    |
- 
-:Examples of components for a long credit position in the JTD calculation
+![Table 1](images/MAR22/table1.png)
+*Table 1: Examples of components for a long credit position in the JTD calculation*
 
 To account for defaults within the one-year capital horizon, the JTD for all exposures of maturity less than one year
 and their hedges are scaled by a fraction of a year. No scaling is applied to the JTD for exposures of one year or
@@ -227,7 +218,7 @@ ratio is computed as follows.
 3. The HBR is the ratio of net long JTD risk positions to the sum of net long JTD and absolute value of net short JTD
    risk positions:
    
-   $$ HBR = \frac{ \sum{net JTD_{long}} }{\sum{net JTD_{long}} + \sum{|net JTD_{short}|}} $$
+   $$ \mathit{HBR} = \frac{\sum{\text{net JTD}_\text{long}}}{\sum{\text{net JTD}_\text{long}} + \sum{|\text{net JTD}_\text{short}|}} $$
 
 For calculating the weighted net JTD, default risk weights are set depending on the credit quality categories (ie rating
 bands) for all three buckets (ie irrespective of the type of counterparty), as set out in Table 2:
@@ -252,7 +243,7 @@ JTD is across the credit quality categories (ie rating bands). In the following 
 and i refers to an instrument belonging to bucket b.
 
 $$
-   DRC_b = \max \left[ \left( \sum_i{RW_i \times net JTD_i} \right) - HBR \times \left( \sum{RW_i \times |net JTD_i|} \right); 0 \right]
+   \mathit{DRC}_b = \max \left[ \left( \sum_i{\mathit{RW}_i \times \text{net JTD}_i} \right) - \mathit{HBR} \times \left( \sum_i{\mathit{RW}_i \times |\text{net JTD}_i|} \right); 0 \right]
 $$
 
 No hedging is recognised between different buckets - the total DRC requirement for non-securitisations must be
@@ -441,7 +432,7 @@ is determined in a similar approach to that for non-securitisations.
 2. A deviation from the approach for non-securitisations is that no floor at zero applies at the bucket level, and
    consequently, the DRC requirement at the index level $DRC_b$ can be negative.
    $$
-      DRC_b = \left( \sum{RW_i \times net JTD_i} \right) - HBR_{ctp} \times \left( \sum{RW_i \times |net JTD_i|} \right)
+      \mathit{DRC}_b = \left( \sum_i{\mathit{RW}_i \times \text{net JTD}_i} \right) - \mathit{HBR}_\text{ctp} \times \left( \sum_i{\mathit{RW}_i \times |\text{net JTD}_i|} \right)
    $$
 
 The total DRC requirement for securitisations (CTP) is calculated by aggregating bucket level capital amounts as
@@ -451,5 +442,5 @@ the index Major Sovereign (G7 and Western Europe) is $-100$, the total DRC requi
 hedge benefit from cross-index short positions is discounted twice, first by the hedge benefit ratio HBR in $DRC_b$,and 
 again by the term 0.5 in the $DRC_{ctp}$ equation]
 
-$$ DRC_{ctp} = \max \left[ \sum_b{(\max[DRC_b, 0] + 0.5 \times \min[DRC_b, 0])}, 0 \right] $$
+$$ \mathit{DRC}_\text{ctp} = \max \left[ \sum_b{(\max[\mathit{DRC}_b, 0] + 0.5 \times \min[\mathit{DRC}_b, 0])}, 0 \right] $$
 
