@@ -38,8 +38,8 @@ therefore be included in the trading book, unless specifically otherwise provide
 
 1. instruments in the correlation trading portfolio;
 
-2. instruments that would give rise to a net short credit or equity position in the banking book;
-   ^[A bank will have a net short risk position for equity risk or credit risk in the banking book if the present value of the banking book increases when an equity price decreases or when a credit spread on an issuer or group of issuers of debt increases.]
+2. instruments that would give rise to a net short credit or equity position in the banking
+   book;^[A bank will have a net short risk position for equity risk or credit risk in the banking book if the present value of the banking book increases when an equity price decreases or when a credit spread on an issuer or group of issuers of debt increases.]
    or
 
 3. instruments resulting from underwriting commitments, where underwriting commitments refer only to securities

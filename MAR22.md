@@ -195,8 +195,7 @@ Exposures to the same obligator may be offset as follows:
       horizon (equal to one year) must be weighted by the ratio of the exposure's maturity relative to the capital
       horizon. For example, with the one-year capital horizon, a three-month short exposure would be weighted so that
       its benefit against long exposures of longer-than-one-year maturity would be reduced to one quarter of the
-      exposure size.
-      ^[Basel Committee on Banking Supervision, Revisions to the securitisation framework, December 2014, 2016 and 2018]
+      exposure size.^[Basel Committee on Banking Supervision, Revisions to the securitisation framework, December 2014, 2016 and 2018]
 
 In the case of long and short offsetting exposures where both have a maturity under one year, the scaling can be applied
 to both the long and short exposures.
@@ -448,12 +447,9 @@ is determined in a similar approach to that for non-securitisations.
 The total DRC requirement for securitisations (CTP) is calculated by aggregating bucket level capital amounts as
 follows. For instance, if the DRC requirement for the index CDX North America IG is $+100$ and the DRC requirement for
 the index Major Sovereign (G7 and Western Europe) is $-100$, the total DRC requirement for the CTP is $100-0.5 \times
-100=50$.
-^[The procedure for the $DRC_b$ and $DRC_{ctp}$ terms accounts for the basis risk in cross index hedges, as the hedge 
-benefit from cross-index short positions is discounted twice, first by the hedge benefit ratio HBR in $DRC_b$,and again 
-by the term 0.5 in the $DRC_{ctp}$ equation]
+100=50$.^[The procedure for the $DRC_b$ and $DRC_{ctp}$ terms accounts for the basis risk in cross index hedges, as the 
+hedge benefit from cross-index short positions is discounted twice, first by the hedge benefit ratio HBR in $DRC_b$,and 
+again by the term 0.5 in the $DRC_{ctp}$ equation]
 
-$$
-   DRC_{ctp} = \max \left[ \sum_b{(\max[DRC_b, 0] + 0.5 \times \min[DRC_b, 0])}, 0 \right]
-$$
+$$ DRC_{ctp} = \max \left[ \sum_b{(\max[DRC_b, 0] + 0.5 \times \min[DRC_b, 0])}, 0 \right] $$
 

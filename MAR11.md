@@ -76,8 +76,8 @@ consolidated basis.
 
 1. Supervisory authorities may permit banking and financial entities in a group which is running a global consolidated
    trading book and whose capital is being assessed on a global basis to include just the net short and net long risk
-   positions no matter where they are booked.
-   ^[The positions of less than wholly owned subsidiaries would be subject to the generally accepted accounting principles in the country where the parent company is supervised.]
+   positions no matter where they are
+   booked.^[The positions of less than wholly owned subsidiaries would be subject to the generally accepted accounting principles in the country where the parent company is supervised.]
 
 2. Supervisory authorities may grant this treatment only when the standardised approach in [MAR20] to [MAR23] permits a
    full offset of the risk position (ie risk positions of the opposite sign do not attract a capital requirement).

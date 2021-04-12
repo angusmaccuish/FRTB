@@ -45,8 +45,8 @@ the sensitivities-based method (ie excluding instruments where the value at any 
 exotic underlying as set out in [MAR23.3]), are subject to delta risk capital requirements. Additionally, the
 instruments specified in (1) to (4) are subject to vega and curvature risk capital requirements:
 
-1. Any instrument with optionality
-   ^[For example, each instrument that is an option or that includes an option (eg an embedded option such as convertibility or rate dependent prepayment and that is subject to the capital requirements for market risk). A non-exhaustive list of example instruments with optionality includes: calls, puts, caps, floors, swaptions, barrier options and exotic options.]
+1. Any instrument with
+   optionality^[For example, each instrument that is an option or that includes an option (eg an embedded option such as convertibility or rate dependent prepayment and that is subject to the capital requirements for market risk). A non-exhaustive list of example instruments with optionality includes: calls, puts, caps, floors, swaptions, barrier options and exotic options.]
 
 2. Any instrument with an embedded prepayment option
    ^[An instrument with a prepayment option is a debt instrument which grants the debtor the right to repay part of or the entire principal amount before the contractual maturity without having to compensate for any foregone interest. The debtor can exercise this option with a financial gain to obtain funding over the remaining maturity of the instrument at a lower rate in other ways in the market.]
@@ -298,8 +298,8 @@ The total capital requirement under the sensitivities-based method is aggregated
       must be allocated, according to the GIRR framework, in the term structure of the relevant risk-free yield curve in
       the same currency.
 
-3. The GIRR delta risk factors also include one of two possible cross-currency basis risk factors
-   ^[Cross-currency basis are basis added to a yield curve in order to evaluate a swap for which the two legs are paid in two different currencies. They are in particular used by market participants to price cross-currency interest rate swaps paying a fixed or a floating leg in one currency, receiving a fixed or a floating leg in a second currency, and including an exchange of the notional in the two currencies at the start date and at the end date of the swap.]
+3. The GIRR delta risk factors also include one of two possible cross-currency basis risk
+   factors^[Cross-currency basis are basis added to a yield curve in order to evaluate a swap for which the two legs are paid in two different currencies. They are in particular used by market participants to price cross-currency interest rate swaps paying a fixed or a floating leg in one currency, receiving a fixed or a floating leg in a second currency, and including an exchange of the notional in the two currencies at the start date and at the end date of the swap.]
    for each currency (ie each GIRR bucket) with the term structure not recognised as a risk factor (ie both
    cross-currency basis curves are flat).
 
@@ -427,9 +427,9 @@ The total capital requirement under the sensitivities-based method is aggregated
    electricity are more frequent on the forward price than transactions on the spot price. Commodity delta risk factors
    are defined along two dimensions:
 
-    * legal terms with respect to the delivery location
-      ^[For example, a contract that can be delivered in five ports can be considered having the same delivery location as another contract if and only if it can be delivered in the same five ports. However, it cannot be considered having the same delivery location as another contract that can be delivered in only four (or less) of those five ports.]
-      of the commodity; and
+   * legal terms with respect to the delivery
+     location^[For example, a contract that can be delivered in five ports can be considered having the same delivery location as another contract if and only if it can be delivered in the same five ports. However, it cannot be considered having the same delivery location as another contract that can be delivered in only four (or less) of those five ports.]
+     of the commodity; and
 
     * time to maturity of the traded instrument at the following tenors: 0 years, 0.25 years, 0.5 years, 1 year, 2
       years, 3 years, 5 years, 10 years, 15 years, 20 years and 30 years.
@@ -454,10 +454,10 @@ The total capital requirement under the sensitivities-based method is aggregated
 
         * the reporting currency; and
 
-        * both the currency in which an instrument is denominated and any other currencies referenced by the instrument.
-          ^[For example, for an FX forward referencing USD/JPY, the relevant risk factors for a CAD-reporting bank to consider are the exchange rates USD/CAD and JPY/CAD. If that CAD-reporting bank calculates FX risk relative to a USD base currency, it would consider separate deltas for the exchange rate JPY/USD risk and CAD/USD FX translation risk and then translate the resulting capital requirement to CAD at the USD/CAD spot exchange rate.]
+      * both the currency in which an instrument is denominated and any other currencies referenced by the
+        instrument.^[For example, for an FX forward referencing USD/JPY, the relevant risk factors for a CAD-reporting bank to consider are the exchange rates USD/CAD and JPY/CAD. If that CAD-reporting bank calculates FX risk relative to a USD base currency, it would consider separate deltas for the exchange rate JPY/USD risk and CAD/USD FX translation risk and then translate the resulting capital requirement to CAD at the USD/CAD spot exchange rate.]
 
-   * Subject to supervisory approval, FX risk may alternatively be calculated relative to a base currency instead of the
+    * Subject to supervisory approval, FX risk may alternatively be calculated relative to a base currency instead of the
      reporting currency. In such case the bank must account for not only:
 
        * the FX risk against the base currency; but also
@@ -586,8 +586,8 @@ $$ s_k = \frac{V_i(1.01 \mathit{FX}_k) - V_i(\mathit{FX}_k)}{0.01} $$
 
 ## Sensitivity definitions for vega risk
 
-The option-level vega risk sensitivity to a given risk factor
-^[As specified in the vega risk factor definitions in \[MAR21.8\] to \[MAR21.14\], the implied volatility of the option must be mapped to one or more maturity tenors.]
+The option-level vega risk sensitivity to a given risk
+factor^[As specified in the vega risk factor definitions in \[MAR21.8\] to \[MAR21.14\], the implied volatility of the option must be mapped to one or more maturity tenors.]
 is measured by multiplying vega by the implied volatility of the option as follows, where:
 
 1. vega, $\frac{\partial V_i}{\partial \sigma_i}$, is defined as the change in the market value of the option $V_i$ as a
@@ -623,8 +623,8 @@ assumptions) for pricing models are applied as follows:
 
 1. For the computation of a vega GIRR or CSR sensitivity, banks may use either the log-normal or normal assumptions.
 
-2. For the computation of a vega equity, commodity or FX sensitivity, banks must use the log-normal assumption.
-   ^[Since vega $\frac{\partial V_i}{\partial \sigma_i}$ of an instrument is multiplied by its implied volatility $\sigma_i$, the vega risk sensitivity for that instrument will be the same under the log-normal assumption and the normal assumption. As a consequence, banks may use a log-normal or normal assumption for GIRR and CSR (in recognition of the trade-offs between constrained specification and computational burden for a standardised approach). For the other risk classes, banks must only use a log-normal assumption (in recognition that this is aligned with common practices across jurisdictions).]
+2. For the computation of a vega equity, commodity or FX sensitivity, banks must use the log-normal
+   assumption.^[Since vega $\frac{\partial V_i}{\partial \sigma_i}$ of an instrument is multiplied by its implied volatility $\sigma_i$, the vega risk sensitivity for that instrument will be the same under the log-normal assumption and the normal assumption. As a consequence, banks may use a log-normal or normal assumption for GIRR and CSR (in recognition of the trade-offs between constrained specification and computational burden for a standardised approach). For the other risk classes, banks must only use a log-normal assumption (in recognition that this is aligned with common practices across jurisdictions).]
 
 If, for internal risk management, a bank computes vega sensitivities using different definitions than the definitions
 set out in this standard, the bank may transform the sensitivities computed for internal risk management purposes to
@@ -669,8 +669,8 @@ to [MAR21.31](5), and for any multi-underlying instruments that reference a besp
 2. Index CTP instruments cannot be broken down into its constituents (ie the index CTP should be considered a risk
    factor as a whole) and the above-mentioned netting at the issuer level does not apply either.
 
-3. Where a look-through approach is adopted, it shall be applied consistently through time,
-   ^[In other words, a bank can initially not apply a look-through approach, and later decide to apply it. However once applied (for a certain type of instrument referencing a particular index), the bank will require supervisory approval to revert to a "no look-through" approach.]
+3. Where a look-through approach is adopted, it shall be applied consistently through
+   time,^[In other words, a bank can initially not apply a look-through approach, and later decide to apply it. However once applied (for a certain type of instrument referencing a particular index), the bank will require supervisory approval to revert to a "no look-through" approach.]
    and shall be used for all identical instruments that reference the same index.
 
 ## Treatment of equity investments in funds
@@ -767,8 +767,8 @@ TODO: TABLE
 
 The risk weight for the inflation risk factor and the cross-currency basis risk factors, respectively, is set at 1.6\%.
 
-For specified currencies by the Basel Committee,
-^[Specified currencies by the Basel Committee are: EUR, USD, GBP, AUD, JPY, SEK, CAD as well as the domestic reporting currency of a bank.]
+For specified currencies by the Basel
+Committee,^[Specified currencies by the Basel Committee are: EUR, USD, GBP, AUD, JPY, SEK, CAD as well as the domestic reporting currency of a bank.]
 the above risk weights may, at the discretion of the bank, be divided by the square root of 2.
 
 For aggregating GIRR risk positions within a bucket, the correlation parameter $\rho_{kl}$ between weighted
@@ -779,14 +779,13 @@ all cross-currency basis risk for a currency (ie "Curr/USD" or "Curr/EUR") for b
 simple sum of weighted sensitivities.
 
 The delta risk correlation $\rho_{kl}$ between weighted sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same
-bucket with different tenor and same curve is set in the following Table 2: ^[TODO: FOOTNOTE]
+bucket with different tenor and same curve is set in the following Table 2:^[TODO: FOOTNOTE]
 
 TODO: TABLE
 
 Between two weighted sensitivities $\mathit{WS}_k$ and $\mathit{WS}_l$ within the same bucket with different tenor and
 different curves, the correlation $\rho_{kl}$ is equal to the correlation parameter specified in [MAR21.46] multiplied
-by 99.90\%.
-^[For example, the correlation between a sensitivity to the one-year tenor of the Eonia swap curve and a sensitivity to the five-year tenor of the three-month Euribor swap curve in the same currency is (88.69\%).(0.999)=88.60\%.]
+by 99.90\%.^[For example, the correlation between a sensitivity to the one-year tenor of the Eonia swap curve and a sensitivity to the five-year tenor of the three-month Euribor swap curve in the same currency is (88.69\%).(0.999)=88.60\%.]
 
 The delta risk correlation $\rho_{kl}$ between a weighted sensitivity $\mathit{WS}_k$ to the inflation curve and a
 weighted sensitivity $\mathit{WS}_l$ to a given tenor of the relevant yield curve is 40\%.
@@ -1122,10 +1121,10 @@ reporting currency.
 
 A unique relative risk weight equal to 15\% applies to all the FX sensitivities.
 
-For the specified currency pairs by the Basel Committee,
-^[Specified currency pairs by the Basel Committee are: USD/EUR, USD/JPY, USD/GBP, USD/AUD, USD/CAD, USD/CHF, USD/MXN, USD/CNY, USD/NZD, USD/RUB, USD/HKD, USD/SGD, USD/TRY, USD/KRW, USD/SEK, USD/ZAR, USD/INR, USD/NOK, USD/BRL.]
-and for currency pairs forming first-order crosses across these specified currency pairs,
-^[For example, EUR/AUD is not among the selected currency pairs specified by the Basel Committee, but is a first-order cross of USD/EUR and USD/AUD.]
+For the specified currency pairs by the Basel
+Committee,^[Specified currency pairs by the Basel Committee are: USD/EUR, USD/JPY, USD/GBP, USD/AUD, USD/CAD, USD/CHF, USD/MXN, USD/CNY, USD/NZD, USD/RUB, USD/HKD, USD/SGD, USD/TRY, USD/KRW, USD/SEK, USD/ZAR, USD/INR, USD/NOK, USD/BRL.]
+and for currency pairs forming first-order crosses across these specified currency
+pairs,^[For example, EUR/AUD is not among the selected currency pairs specified by the Basel Committee, but is a first-order cross of USD/EUR and USD/AUD.]
 the above risk weight may at the discretion of the bank be divided by the square root of 2.
 
 For aggregating delta FX risk positions across buckets, the correlation parameter $\gamma_{bc}$ is uniformly set to
@@ -1140,7 +1139,7 @@ The same bucket definitions for each risk class are used for vega risk as for de
 
 For calculating weighted sensitivities for vega risk, the risk of market illiquidity is incorporated into the
 determination of vega risk, by assigning different liquidity horizons for each risk class as set out in Table 13. The
-risk weight for each risk class ^[TODO] is also set out in Table 13.
+risk weight for each risk class^[TODO] is also set out in Table 13.
 
 TODO: TABLE
 
