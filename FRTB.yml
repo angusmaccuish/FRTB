@@ -1,9 +1,10 @@
 ---
 title: "FRTB: Minimum capital requirements for market risk"
 author: "Bank for International Settlements"
-date: January 2019
+date: "January 2019"
 numbersections: false
 toc: true
+geometry: "left=3cm,right=3cm,top=2cm,bottom=2cm"
 include-before:
   - '`\newpage{}`{=latex}'
 ---
