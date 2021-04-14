@@ -52,9 +52,8 @@ sensitivities-based method, the default risk capital (DRC) requirement and the r
 ## Definition of correlation trading portfolio
 
 For the purpose of calculating the credit spread risk capital requirement under the sensitivities based method and the
-DRC requirement, the correlation trading portfolio is defined as the set of instruments that meet the requirements of (
-
-1) or (2) below.
+DRC requirement, the correlation trading portfolio is defined as the set of instruments that meet the requirements of
+(1) or (2) below.
 
 1. The instrument is a securitisation position that meets the following requirements:
 
